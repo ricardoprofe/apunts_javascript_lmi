@@ -1,5 +1,3 @@
-# JavaScript bàsic
-
  ## Inclusió de JavaScript en HTML
 
  Podem incloure el codi JavaScript dins del codi HTML amb l'etiqueta `<script>`:
