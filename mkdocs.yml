@@ -1,6 +1,4 @@
 site_name: Apunts de JavaScript
-theme: material
-markdown_extensions:
-  - admonition
+theme: mkdocs
 docs_dir: 'md'
 site_dir: 'docs'

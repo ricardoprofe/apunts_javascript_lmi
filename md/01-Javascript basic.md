@@ -1,3 +1,5 @@
+# JavaScript bàsic
+
  ## Inclusió de JavaScript en HTML
 
  Podem incloure el codi JavaScript dins del codi HTML amb l'etiqueta `<script>`:
@@ -200,4 +202,82 @@ Les constants són variables a les quals s'assigna un valor en el moment de la s
 
 ```javascript
 const GRAVETAT = 9.8;
+```
+
+## Tipus de dades
+
+JavaScript és un llenguatge **dinàmicament tipat**, el que significa que una variable pot tindre un valor d'un tipus i després tindre un valor d'un tipus diferent.
+
+JavaScript té un nombre molt reduït de tipus de dades: numèriques, cadenes de caràcters i booleanes.
+
+### Number
+
+Representa números enters i amb decimals.
+
+```javascript
+let edat = 51;
+let area = 4.56;
+```
+
+### String
+
+Representa cadenes de caràcters. Es pot escriure amb cometes simples, dobles o invertides. 
+
+```javascript
+let cad1 = "Hola";
+let cad2 = 'Món';
+let cad3 = `El valor de cad1 és: ${cad1}`;
+```
+
+Les cometes invertides permeten interpretar variables i operacions dins dels  delimitadors `${ }`.
+
+### Boolean
+
+Les variables booleanes poden tindre els valors true o false. Generalment guarden el resultat d'una comparació.
+
+```javascript
+let casat = false;
+let actiu = true;
+```
+
+### Altres valors
+
+Quan una variable ha sigut declarada però no se li ha assignat cap valor, té el tipus **`undefined`**:
+
+```javascript
+let nom;
+console.log(nom); //Mostra undefined
+```
+
+El valor **`null`** s'utilitza per a representar valors inexistents o desconeguts:
+
+```javascript
+let alumne = null;
+console.log(alumne); //Mostra null
+```
+
+El valor **`Infinity`** s'obté al dividir un número entre 0:
+
+```javascript
+console.log(1 / 0); //Mostra Infinity
+```
+
+El valor **`NaN`** significa **Not a Number**. S'obté quan una operació dónaria un resultar matemàtic erroni:
+
+```javascript
+console.log("Hola" / 2); //Mostra NaN
+```
+
+### L'operador `typeof`
+
+L'operador `typeof` retorna un string amb el tipus de la variable o del valor que escrivim a continuació:
+
+```javascript
+let nom = "Pepa";
+let edat = 15;
+let actiu = true;
+console.log(nom); // Mostra "string"
+console.log(edat); // Mostra "number"
+console.log(actiu); // Mostra "boolean"
+console.log(nom / edat); // Mostra NaN
 ```
