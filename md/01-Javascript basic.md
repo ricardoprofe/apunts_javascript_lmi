@@ -1,4 +1,4 @@
- # JavaScript bàsic
+# JavaScript bàsic
 
  ## Inclusió de JavaScript en HTML
 
