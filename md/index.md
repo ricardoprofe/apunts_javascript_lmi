@@ -281,3 +281,107 @@ console.log(edat); // Mostra "number"
 console.log(actiu); // Mostra "boolean"
 console.log(nom / edat); // Mostra NaN
 ```
+
+## Operadors matemàtics
+
+Els operadors matemàstics bàsics són la **suma**, **resta**, **multiplicació** i **divisió**. A ells podem afegir els operadors de **mòdul** (calcula el residu de la resta entera) i l'operador d'**exponenciació**. Els seus símbols són:
+
+* Suma: **`+`**,
+* Resta: **`-`**,
+* Multiplicació: **`*`**,
+* Divisió: **`/`**,
+* Mòdul: **`%`**,
+* Exponenciació: **`**`**
+
+Exemples:
+
+```javascript
+console.log(8 % 3) // 2
+console.log(2 ** 3) // 8
+```
+
+També tenim altres operadors unaris com la negació (**`-`**).
+
+```javascript
+let num = 5;
+console.log(-num) // -5
+```
+
+### Concatenació de strings
+
+L'operador binari `**+**` usat amb cadenes, torna la concatenació de les 2 cadenes. Si un dels 2 operands és una cadena, conveteix l'altre operand en cadena i els concatena.
+
+```javascript
+let cad1 = "Hola ";
+let cad2 = "Món";
+let num = 5;
+let bool = true;
+
+console.log(cad1 + cad2); // "Hola Món"
+console.log(cad1 + num); // "Hola 5"
+console.log(cad1 + bool); // "Hola true"
+```
+
+### Assignació
+
+L'operador assignació `**=**` significa que s'assigna a la variable de la part esquerra de l'operador, el valor resultat d'avaluar la part dreta:
+
+```js
+let num = (3 + 4) * 2;
+console.log(num); // 14
+```
+
+### Increment, decrement i operadors abreviats
+
+L'**increment** **`++`** augmenta el valor d'una variable en 1. El **decrement** **`--`** disminueix el seu valor en 1:
+
+```js
+let num = 1;
+num++;
+console.log(num); // 2
+num--
+console.log(num); // 1
+```
+
+Aquests 2 operadors es poden usar darrere de la variable (**post-increment** o **post-decrement**) o davant (**pre-increment** o **pre-decrement**). La diferència és que amb els operadors **post**, primer s'avalua el valor de la variable i després es modifica, mentre que amb els operadors **pre**, primer es modifica i després s'avalua:
+
+```js
+let num = 1;
+console.log(num++); // 1
+let num2 = 1;
+console.log(++num); // 2
+```
+
+També tenim els operadors abreviats com en altres llenguatges, que combinen una operació aritmètica amb una assignació:
+
+```js
+let num = 1;
+num += 5; // num = num + 5
+console.log(num); // 6
+```
+
+Els operadors abreviats són: **`+=`**, **`-=`**, **`*=`**, **`/=`**, **`%=`**, **`**=`**.
+
+
+### Precedència d'operadors
+
+Si una operació té més d'un operador, el seu ordre de prioritat es defneix generalment amb les mateixes regles que coneixem de matemàtiques.
+
+En la següent taula es mostren els valors de precedència que té cada operador, a major valor major precedència:
+
+| Precedencia| Nombre | Signo |
+|------------|------|------|
+| 16 | post-increment | `.. ++` |
+| 16 | post-decrement | `.. --` |
+| 15 | pre-increment | `++ ..` |
+| 15 | pre-decrement | `-- ..` |
+| 15 | negació unaria | `-` |
+| 14 | exponenciació | `**` |
+| 13 | multiplicació | `*` |
+| 13 | divisió | `/` |
+| 13 | mòdul | `%` |
+| 12 | suma | `+` |
+| 12 | resta | `-` |
+| 2 | asignacions | `=`, `+=`, etc.|
+
+A l'igual que en matemàtiques, si 2 operadors tenen la mateixa precedència, s'avaluen d'esquerra a dreta i els **parèntesis** poden modificar la preferència agrupant operacions.
