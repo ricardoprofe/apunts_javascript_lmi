@@ -24,22 +24,9 @@
         <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
             <div class="container">
                 <a class="navbar-brand" href=".">Apunts de JavaScript</a>
-                <!-- Expander button -->
-                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
 
                 <!-- Expanded navigation -->
                 <div id="navbar-collapse" class="navbar-collapse collapse">
-                        <!-- Main navigation -->
-                        <ul class="nav navbar-nav">
-                            <li class="navitem active">
-                                <a href="." class="nav-link">Apunts de JavaScript - LMI</a>
-                            </li>
-                            <li class="navitem">
-                                <a href="01-Javascript%20basic/" class="nav-link">JavaScript bàsic</a>
-                            </li>
-                        </ul>
 
                     <ul class="nav navbar-nav ml-auto">
                         <li class="nav-item">
@@ -47,16 +34,6 @@
                                 <i class="fa fa-search"></i> Search
                             </a>
                         </li>
-                            <li class="nav-item">
-                                <a rel="prev" class="nav-link disabled">
-                                    <i class="fa fa-arrow-left"></i> Previous
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a rel="next" href="01-Javascript%20basic/" class="nav-link">
-                                    Next <i class="fa fa-arrow-right"></i>
-                                </a>
-                            </li>
                     </ul>
                 </div>
             </div>
@@ -75,8 +52,36 @@
     <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
         <ul class="nav flex-column">
             
-            <li class="nav-item" data-level="1"><a href="#apunts-de-javascript-lmi" class="nav-link">Apunts de JavaScript - LMI</a>
+            <li class="nav-item" data-level="1"><a href="#javascript-basic" class="nav-link">JavaScript bàsic</a>
               <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#inclusio-de-javascript-en-html" class="nav-link">Inclusió de JavaScript en HTML</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#eixida-de-dades" class="nav-link">Eixida de dades</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#lectura-de-dades" class="nav-link">Lectura de dades</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#sintaxi-basica" class="nav-link">Sintàxi bàsica</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#variables" class="nav-link">Variables</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#tipus-de-dades" class="nav-link">Tipus de dades</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#operadors-matematics" class="nav-link">Operadors matemàtics</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
               </ul>
             </li>
         </ul>
@@ -84,9 +89,324 @@
 </div></div>
                     <div class="col-md-9" role="main">
 
-<h1 id="apunts-de-javascript-lmi">Apunts de JavaScript - LMI</h1>
-<p>Ricardo Sánchez</p>
-<p>1 JavaScript bàsic</p></div>
+<h1 id="javascript-basic">JavaScript bàsic</h1>
+<h2 id="inclusio-de-javascript-en-html">Inclusió de JavaScript en HTML</h2>
+<p>Podem incloure el codi JavaScript dins del codi HTML amb l'etiqueta <code>&lt;script&gt;</code>:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+    &lt;head&gt;
+        &lt;script&gt;            
+            document.getElementById(&quot;missatge&quot;).innerHTML = &quot;Hola món&quot;;           
+        &lt;/script&gt;
+    &lt;/head&gt;
+...
+</code></pre>
+<p>L'etiqueta <code>&lt;script&gt;</code> pot anar dins de <code>&lt;head&gt;</code> o dins de <code>&lt;body&gt;</code>, però és preferible posar-la al final de <code>&lt;body&gt;</code> per tal d'accelerar la càrrega de la pàgina:</p>
+<pre><code class="language-html">...
+
+&lt;body&gt;
+
+...
+
+    &lt;script&gt;        
+        document.write(&quot;Hola món&quot;);
+    &lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<blockquote>
+<p>És possible tindre vàries etiquetes <code>&lt;script&gt;</code> en un document HTML.</p>
+</blockquote>
+<p>També podem incloure codi JavaScript directament en el codi HTML, com a valor  d'un atribut. Generalment s'utilitza per a associar un esdeveniment, com el clic d'un botó, a una acció JavaScript:</p>
+<pre><code class="language-html">&lt;button type=&quot;button&quot; onclick=&quot;document.write('Hola món');&quot;&gt;Saludar&lt;/button&gt;
+</code></pre>
+<p>Però la forma més usual d'incloure codi JavaScript és per mitjà d'arxius externs. Això té l'advantatge de que el mateix codi és accessible per vàries pàgines: </p>
+<pre><code class="language-html">&lt;script src=&quot;scriptExtern.js&quot;&gt;&lt;/script&gt; 
+</code></pre>
+<blockquote>
+<p>Els scripts en arxius externs solen tindre l'extensió <strong>.js</strong> i no s'escriuen entre etiquetes <code>&lt;script&gt;</code>.</p>
+</blockquote>
+<h2 id="eixida-de-dades">Eixida de dades</h2>
+<p>Hi ha vàries formes de mostrar dades amb Javascript.</p>
+<h3 id="amb-documentwrite">Amb <code>document.write</code></h3>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+    &lt;script&gt;
+        document.write(&quot;&lt;h1&gt;Hola món&lt;/h1&gt;&quot;);
+    &lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<blockquote>
+<p>Aquest mètode escriu directament al document HTML. Si s'invoca una vegada ja s'ha carregat la pàgina, esborrarà tot el contingut HTML.</p>
+<p>Es recomana usar aquest mètode només per a testing.</p>
+</blockquote>
+<h3 id="accedint-als-element-pel-seu-id">Accedint als element pel seu ID</h3>
+<p>Consisteix en associar un id a l'element HTML en què volem mostrar la informació, accedir a ell amb el mètode <strong><code>document.getElementById</code></strong> i canviar el seu HTML intern (propietat <strong><em>innerHTML</em></strong>):</p>
+<pre><code class="language-html">&lt;body&gt;
+
+    &lt;p id=&quot;missatge&quot;&gt;&lt;/p&gt;
+
+    &lt;script&gt;
+        document.getElementById(&quot;missatge&quot;).innerHTML = &quot;Hola món&quot;;
+    &lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<h3 id="amb-windowalert">Amb <code>window.alert</code></h3>
+<p>El mètode <code>window.alert</code> mostra un diàleg d'alerta:</p>
+<pre><code class="language-html">&lt;button type=&quot;button&quot; onclick=&quot;window.alert('Hola món')&quot;&gt;Saludar&lt;/button&gt;
+</code></pre>
+<p>Es pot omitir l'objecte <code>window</code>:</p>
+<pre><code class="language-html">&lt;button type=&quot;button&quot; onclick=&quot;alert('Hola món')&quot;&gt;Saludar&lt;/button&gt;
+</code></pre>
+<p>Aquest mètode no s'utilitza molt en l'actualitat, ja que es considera que mostrar aquest tipus de diàlegs és intrusiu.</p>
+<h3 id="eixida-per-consola">Eixida per consola</h3>
+<p>Amb <code>console.log()</code> podem escriure directament a la consola del navegador. Aquesta opció és útil per a depurar:</p>
+<pre><code class="language-html">&lt;script&gt;
+    console.log(&quot;Hola món&quot;);
+&lt;/script&gt;
+</code></pre>
+<h2 id="lectura-de-dades">Lectura de dades</h2>
+<p>La forma més normal de llegir dades de l'usuari amb JavaScript és per mitjà d'<strong>inputs de formularis</strong>. Generalment accedim a l'input pel seu <strong>id</strong> i llegim el valor introduït per l'usuari (<strong>value</strong>):</p>
+<pre><code class="language-html">&lt;form&gt;
+    &lt;input type=&quot;text&quot; name=&quot;nom&quot; id=&quot;nom&quot;&gt;
+    &lt;button type=&quot;button&quot; onclick=&quot;alert('Hola ' + document.getElementById('nom').value);&quot;&gt;Enviar&lt;/button&gt;
+&lt;/form&gt;
+</code></pre>
+<p>També podem utilizar el mètode <code>window.prompt</code>:</p>
+<pre><code class="language-html">&lt;body&gt;
+    &lt;p id=&quot;missatge&quot;&gt;&lt;/p&gt;    
+    &lt;script&gt;
+        nom = window.prompt(&quot;Com et diuen?&quot;);
+        document.getElementById('missatge').innerHTML = &quot;Hola &quot; + nom;
+    &lt;/script&gt;
+&lt;/body&gt;
+</code></pre>
+<h2 id="sintaxi-basica">Sintàxi bàsica</h2>
+<p>Cada sentència finalitza mb un punt i coma (<strong><code>;</code></strong>):</p>
+<pre><code class="language-javascript">alert('Hola');
+alert('Món');
+</code></pre>
+<p>A l'igual que en altres llenguatges, es recomana escriure una sentència per línia.</p>
+<blockquote>
+<p>El punt i coma no es obligatori escriure'l si escrivim una sentència per línia, però es recomana fer-ho.</p>
+</blockquote>
+<h3 id="comentaris">Comentaris</h3>
+<p>JavaScript admet comentaris d'una línia i de vàries línies:</p>
+<pre><code class="language-javascript">//Aquest és un comentari d'una línia
+//Aquest és un altre comentari d'una línia
+
+/* Aquest és
+un comentari
+de vàries 
+línies*/
+</code></pre>
+<h2 id="variables">Variables</h2>
+<p>Les variables es declaren amb la paraula reservada <code>let</code>:</p>
+<pre><code class="language-javascript">let nom; //Declaració sense assignació
+let edat = 15; //Declaració amb assignació
+</code></pre>
+<p>Una vegada declarada una variable, es pot accedir a ella i modificar el seu contingut:</p>
+<pre><code class="language-javascript">let missatge;
+missatge = &quot;Hola&quot;;
+console.log(missatge); //mostra 'Hola' per consola 
+</code></pre>
+<p>Els noms de les variables només poden incloure lletres, dígits o els símbols <code>$</code> i<code>_</code>. El primer caràcter no pot ser un dígit.</p>
+<pre><code class="language-javascript">//Noms vàlids:
+let nomAlumne;
+let a123;
+let _edat;
+let $;
+let _;
+
+//Noms no vàlids:
+let nom-alumne;
+let 1abc;
+</code></pre>
+<h3 id="constants">Constants</h3>
+<p>Les constants són variables a les quals s'assigna un valor en el moment de la seua creació i aquest no pot ser modificat:</p>
+<pre><code class="language-javascript">const GRAVETAT = 9.8;
+</code></pre>
+<h2 id="tipus-de-dades">Tipus de dades</h2>
+<p>JavaScript és un llenguatge <strong>dinàmicament tipat</strong>, el que significa que una variable pot tindre un valor d'un tipus i després tindre un valor d'un tipus diferent.</p>
+<p>JavaScript té un nombre molt reduït de tipus de dades: numèriques, cadenes de caràcters i booleanes.</p>
+<h3 id="number">Number</h3>
+<p>Representa números enters i amb decimals.</p>
+<pre><code class="language-javascript">let edat = 51;
+let area = 4.56;
+</code></pre>
+<h3 id="string">String</h3>
+<p>Representa cadenes de caràcters. Es pot escriure amb cometes simples, dobles o invertides. </p>
+<pre><code class="language-javascript">let cad1 = &quot;Hola&quot;;
+let cad2 = 'Món';
+let cad3 = `El valor de cad1 és: ${cad1}`;
+</code></pre>
+<p>Les cometes invertides permeten interpretar variables i operacions dins dels  delimitadors <code>${ }</code>.</p>
+<h3 id="boolean">Boolean</h3>
+<p>Les variables booleanes poden tindre els valors true o false. Generalment guarden el resultat d'una comparació.</p>
+<pre><code class="language-javascript">let casat = false;
+let actiu = true;
+</code></pre>
+<h3 id="altres-valors">Altres valors</h3>
+<p>Quan una variable ha sigut declarada però no se li ha assignat cap valor, té el tipus <strong><code>undefined</code></strong>:</p>
+<pre><code class="language-javascript">let nom;
+console.log(nom); //Mostra undefined
+</code></pre>
+<p>El valor <strong><code>null</code></strong> s'utilitza per a representar valors inexistents o desconeguts:</p>
+<pre><code class="language-javascript">let alumne = null;
+console.log(alumne); //Mostra null
+</code></pre>
+<p>El valor <strong><code>Infinity</code></strong> s'obté al dividir un número entre 0:</p>
+<pre><code class="language-javascript">console.log(1 / 0); //Mostra Infinity
+</code></pre>
+<p>El valor <strong><code>NaN</code></strong> significa <strong>Not a Number</strong>. S'obté quan una operació dónaria un resultar matemàtic erroni:</p>
+<pre><code class="language-javascript">console.log(&quot;Hola&quot; / 2); //Mostra NaN
+</code></pre>
+<h3 id="loperador-typeof">L'operador <code>typeof</code></h3>
+<p>L'operador <code>typeof</code> retorna un string amb el tipus de la variable o del valor que escrivim a continuació:</p>
+<pre><code class="language-javascript">let nom = &quot;Pepa&quot;;
+let edat = 15;
+let actiu = true;
+console.log(nom); // Mostra &quot;string&quot;
+console.log(edat); // Mostra &quot;number&quot;
+console.log(actiu); // Mostra &quot;boolean&quot;
+console.log(nom / edat); // Mostra NaN
+</code></pre>
+<h2 id="operadors-matematics">Operadors matemàtics</h2>
+<p>Els operadors matemàstics bàsics són la <strong>suma</strong>, <strong>resta</strong>, <strong>multiplicació</strong> i <strong>divisió</strong>. A ells podem afegir els operadors de <strong>mòdul</strong> (calcula el residu de la resta entera) i l'operador d'<strong>exponenciació</strong>. Els seus símbols són:</p>
+<ul>
+<li>Suma: <strong><code>+</code></strong>,</li>
+<li>Resta: <strong><code>-</code></strong>,</li>
+<li>Multiplicació: <strong><code>*</code></strong>,</li>
+<li>Divisió: <strong><code>/</code></strong>,</li>
+<li>Mòdul: <strong><code>%</code></strong>,</li>
+<li>Exponenciació: <strong><code>**</code></strong></li>
+</ul>
+<p>Exemples:</p>
+<pre><code class="language-javascript">console.log(8 % 3) // 2
+console.log(2 ** 3) // 8
+</code></pre>
+<p>També tenim altres operadors unaris com la negació (<strong><code>-</code></strong>).</p>
+<pre><code class="language-javascript">let num = 5;
+console.log(-num) // -5
+</code></pre>
+<h3 id="concatenacio-de-strings">Concatenació de strings</h3>
+<p>L'operador binari <code>**+**</code> usat amb cadenes, torna la concatenació de les 2 cadenes. Si un dels 2 operands és una cadena, conveteix l'altre operand en cadena i els concatena.</p>
+<pre><code class="language-javascript">let cad1 = &quot;Hola &quot;;
+let cad2 = &quot;Món&quot;;
+let num = 5;
+let bool = true;
+
+console.log(cad1 + cad2); // &quot;Hola Món&quot;
+console.log(cad1 + num); // &quot;Hola 5&quot;
+console.log(cad1 + bool); // &quot;Hola true&quot;
+</code></pre>
+<h3 id="assignacio">Assignació</h3>
+<p>L'operador assignació <code>**=**</code> significa que s'assigna a la variable de la part esquerra de l'operador, el valor resultat d'avaluar la part dreta:</p>
+<pre><code class="language-js">let num = (3 + 4) * 2;
+console.log(num); // 14
+</code></pre>
+<h3 id="increment-decrement-i-operadors-abreviats">Increment, decrement i operadors abreviats</h3>
+<p>L'<strong>increment</strong> <strong><code>++</code></strong> augmenta el valor d'una variable en 1. El <strong>decrement</strong> <strong><code>--</code></strong> disminueix el seu valor en 1:</p>
+<pre><code class="language-js">let num = 1;
+num++;
+console.log(num); // 2
+num--
+console.log(num); // 1
+</code></pre>
+<p>Aquests 2 operadors es poden usar darrere de la variable (<strong>post-increment</strong> o <strong>post-decrement</strong>) o davant (<strong>pre-increment</strong> o <strong>pre-decrement</strong>). La diferència és que amb els operadors <strong>post</strong>, primer s'avalua el valor de la variable i després es modifica, mentre que amb els operadors <strong>pre</strong>, primer es modifica i després s'avalua:</p>
+<pre><code class="language-js">let num = 1;
+console.log(num++); // 1
+let num2 = 1;
+console.log(++num); // 2
+</code></pre>
+<p>També tenim els operadors abreviats com en altres llenguatges, que combinen una operació aritmètica amb una assignació:</p>
+<pre><code class="language-js">let num = 1;
+num += 5; // num = num + 5
+console.log(num); // 6
+</code></pre>
+<p>Els operadors abreviats són: <strong><code>+=</code></strong>, <strong><code>-=</code></strong>, <strong><code>*=</code></strong>, <strong><code>/=</code></strong>, <strong><code>%=</code></strong>, <strong><code>**=</code></strong>.</p>
+<h3 id="precedencia-doperadors">Precedència d'operadors</h3>
+<p>Si una operació té més d'un operador, el seu ordre de prioritat es defneix generalment amb les mateixes regles que coneixem de matemàtiques.</p>
+<p>En la següent taula es mostren els valors de precedència que té cada operador, a major valor major precedència:</p>
+<table>
+<thead>
+<tr>
+<th>Precedència</th>
+<th>Nom</th>
+<th>Signe</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>16</td>
+<td>post-increment</td>
+<td><code>.. ++</code></td>
+</tr>
+<tr>
+<td>16</td>
+<td>post-decrement</td>
+<td><code>.. --</code></td>
+</tr>
+<tr>
+<td>15</td>
+<td>pre-increment</td>
+<td><code>++ ..</code></td>
+</tr>
+<tr>
+<td>15</td>
+<td>pre-decrement</td>
+<td><code>-- ..</code></td>
+</tr>
+<tr>
+<td>15</td>
+<td>negació unaria</td>
+<td><code>-</code></td>
+</tr>
+<tr>
+<td>14</td>
+<td>exponenciació</td>
+<td><code>**</code></td>
+</tr>
+<tr>
+<td>13</td>
+<td>multiplicació</td>
+<td><code>*</code></td>
+</tr>
+<tr>
+<td>13</td>
+<td>divisió</td>
+<td><code>/</code></td>
+</tr>
+<tr>
+<td>13</td>
+<td>mòdul</td>
+<td><code>%</code></td>
+</tr>
+<tr>
+<td>12</td>
+<td>suma</td>
+<td><code>+</code></td>
+</tr>
+<tr>
+<td>12</td>
+<td>resta</td>
+<td><code>-</code></td>
+</tr>
+<tr>
+<td>2</td>
+<td>asignacions</td>
+<td><code>=</code>, <code>+=</code>, etc.</td>
+</tr>
+</tbody>
+</table>
+<p>A l'igual que en matemàtiques, si 2 operadors tenen la mateixa precedència, s'avaluen d'esquerra a dreta i els <strong>parèntesis</strong> poden modificar la preferència agrupant operacions.</p></div>
             </div>
         </div>
 
@@ -167,5 +487,5 @@
 
 <!--
 MkDocs version : 1.4.2
-Build Date UTC : 2023-03-30 18:08:15.273365+00:00
+Build Date UTC : 2023-03-31 11:24:20.246523+00:00
 -->

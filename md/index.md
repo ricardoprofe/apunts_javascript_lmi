@@ -369,7 +369,7 @@ Si una operació té més d'un operador, el seu ordre de prioritat es defneix ge
 
 En la següent taula es mostren els valors de precedència que té cada operador, a major valor major precedència:
 
-| Precedencia| Nombre | Signo |
+| Precedència| Nom | Signe |
 |------------|------|------|
 | 16 | post-increment | `.. ++` |
 | 16 | post-decrement | `.. --` |
