@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>Validació de formularis - Apunts de JavaScript</title>
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css">
+        <link href="../css/extra.css" rel="stylesheet">
+
+        <script src="../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../js/bootstrap.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="..">Apunts de JavaScript</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="navitem">
+                                <a href=".." class="nav-link">JavaScript bàsic</a>
+                            </li>
+                            <li class="navitem active">
+                                <a href="./" class="nav-link">Validació de formularis</a>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href=".." class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" class="nav-link disabled">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="1"><a href="#validacio-de-formularis" class="nav-link">Validació de formularis</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#validacio-basica" class="nav-link">Validació bàsica</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="validacio-de-formularis">Validació de formularis</h1>
+<p>En aquest apartat veurem la validació de les dades introduïdes en formularis HTML. Cal recordar que l'estàndard <strong>HTML5</strong> ja proporciona un validació bàsica per a alguns tipus de inputs (<code>type="email"</code>, <code>type="number"</code>, etc) així com altres restriccions (<code>maxlength</code>, <code>min</code>, <code>max</code>, <code>required</code>, etc). Però en aquests apunts farem tota la validació amb codi JavaScript, per tant el tipus dels inputs serà <code>type="text"</code> i no usarem cap altra restricció.</p>
+<h2 id="validacio-basica">Validació bàsica</h2>
+<p>El primer pas serà validar les camps requerits. Això es pot detectar si el valor introduït és igual a la cadena buida (<code>""</code>).</p>
+<p>Per exemple, si tenim el següent formulari:</p>
+<pre><code class="language-html">&lt;form action=&quot;#&quot; onsubmit=&quot;&quot;&gt;
+    &lt;label for=&quot;nom&quot;&gt;&lt;strong&gt;Nom&lt;/strong&gt;&lt;/label&gt;
+    &lt;input type=&quot;text&quot; name=&quot;nom&quot; id=&quot;nom&quot;&gt;
+
+    &lt;button type=&quot;button&quot; onclick=&quot;validar()&quot;&gt;Enviar&lt;/button&gt;
+&lt;/form&gt;
+</code></pre>
+<p>La funció <code>validar()</code> validaria que el <code>input</code> <strong>nom</strong> no és buit:</p>
+<pre><code class="language-javascript">function validar() {
+  let nom = document.getElementById(&quot;nom&quot;).value;
+  if (nom == &quot;&quot;) {
+    alert(&quot;El nom no pot estar buit&quot;);
+  }
+}
+</code></pre>
+<p>L'ús de <code>alert</code> no és recomanat per a mostrar informació a l'usuari. Al seu lloc és millor fer-ho mostrant el text de l'error al costat, dalt o baix de l'input. Per a això podem usar un element de text que inicialment estarà buit i on podrem mostrar el text de l'error:</p>
+<pre><code class="language-html">&lt;form action=&quot;#&quot; onsubmit=&quot;&quot;&gt;
+    &lt;label for=&quot;nom&quot;&gt;&lt;strong&gt;Nom&lt;/strong&gt;&lt;/label&gt;
+    &lt;input type=&quot;text&quot; name=&quot;nom&quot; id=&quot;nom&quot;&gt;
+    &lt;span class=&quot;error&quot; id=&quot;nomErr&quot;&gt;&lt;/span&gt;&lt;br&gt;
+
+    &lt;button type=&quot;button&quot; onclick=&quot;validar()&quot;&gt;Enviar&lt;/button&gt;
+&lt;/form&gt;
+
+&lt;script&gt;
+function validar() {
+  let nom = document.getElementById(&quot;nom&quot;).value;
+  if (nom == &quot;&quot;) {
+    document.getElementById('nomErr').innerHTML = 'Camp requerit';
+  }
+}
+&lt;/script&gt;
+</code></pre>
+<p>En aquest exemple estariem mostrant l'error dins del <code>span</code> amb <code>id</code> <em>"nomErr"</em>. Las classe <em>"error"</em> ens servirà per a assignar un estil CSS a tos els missatges d'error.</p></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = "..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../js/base.js" defer></script>
+        <script src="../search/main.js" defer></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

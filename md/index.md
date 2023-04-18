@@ -425,6 +425,8 @@ console.log( '01' == 1 ); // false
 
 ## Sentencies condicionals
 
+Les **sentències condicionals** s'utilitzen quan volem trencar l'estructura seqüencial del codi. Ens permet fer salts a altres parts del codi depenent d'unes determinades condicions.
+
 ### if - else
 
 La sentència **`if (...)`** avalua l'expressió booleana entre els parèntesis i executa el bloc de codi a continuació si el resultat de l'expressió és `true`:
@@ -502,5 +504,53 @@ Per exemple:
 
 ``` js
 let x = 6, y = 2, z = 0;
-if (x > 5 && (y == 2 || z != 0) && ! (z < 1)) // true
+if (x > 5 && (y == 2 || z != 0) && !(z < 1)) // true
 ```
+
+### `switch - case`
+
+La sentència **`switch - case`** és similar a l'estructura `if - else if - else` i s'utilitza per a simplificar aquesta quan tenim moltes condicions:
+
+``` js
+switch(condicio) {
+  case 'valor1':  // if (condicio === 'valor1')
+    ...
+    break;
+
+  case 'valor2':  // if (condicio === 'valor2')
+    ...
+    break;
+
+  default:
+    ...
+    break;
+}
+```
+
+Els valors poden ser numèrics o cadenes.
+
+La condició s'avalua sempre amb l'**operador d'igualtat estricta `===`**.
+
+La sentència **`break`** causa l'eixida de l'estructura `switch`. No és necessària, però en general s'utilitza ja que una vegada es compleix la condició, el `case` que coincideix amb aquesta actua com a punt d'entrada, execuntatn-se les instruccions de tots els case a continuació d'aquest. Per exemple:
+
+```js
+let x = 0;
+switch (x) {
+  case 0:
+    num = "Zero";
+  case 1:
+    num = "U";
+  case 2:
+    num = "Dos";
+    break;
+  case 3:
+    num = "Tres";
+    break;
+}
+
+console.log(num) // "Dos"
+```
+
+En aquest codi si `x` val 0 o 1 el valor mostrat seria `"Dos"` ja que no tenim una sentència `break` per a eixir del `switch`.
+
+Per últim, la sentència **`default`** s'utilitza per a executar codi quan la condició no coincideix amb cap `case`. Si `default` està al final del `switch`, no és necessari el `break`.

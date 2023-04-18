@@ -25,9 +25,22 @@
         <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
             <div class="container">
                 <a class="navbar-brand" href=".">Apunts de JavaScript</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
 
                 <!-- Expanded navigation -->
                 <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="navitem active">
+                                <a href="." class="nav-link">JavaScript bàsic</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="validacio/" class="nav-link">Validació de formularis</a>
+                            </li>
+                        </ul>
 
                     <ul class="nav navbar-nav ml-auto">
                         <li class="nav-item">
@@ -35,6 +48,16 @@
                                 <i class="fa fa-search"></i> Search
                             </a>
                         </li>
+                            <li class="nav-item">
+                                <a rel="prev" class="nav-link disabled">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="validacio/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
                     </ul>
                 </div>
             </div>
@@ -477,6 +500,7 @@ console.log( false == 0 ); // true
 console.log( '01' == 1 ); // false
 </code></pre>
 <h2 id="sentencies-condicionals">Sentencies condicionals</h2>
+<p>Les <strong>sentències condicionals</strong> s'utilitzen quan volem trencar l'estructura seqüencial del codi. Ens permet fer salts a altres parts del codi depenent d'unes determinades condicions.</p>
 <h3 id="if-else">if - else</h3>
 <p>La sentència <strong><code>if (...)</code></strong> avalua l'expressió booleana entre els parèntesis i executa el bloc de codi a continuació si el resultat de l'expressió és <code>true</code>:</p>
 <pre><code class="language-js">let edat = 18;
@@ -554,8 +578,45 @@ console.log(missatge);
 <p><strong><code>NOT &gt; AND &gt; OR</code></strong></p>
 <p>Per exemple:</p>
 <pre><code class="language-js">let x = 6, y = 2, z = 0;
-if (x &gt; 5 &amp;&amp; (y == 2 || z != 0) &amp;&amp; ! (z &lt; 1)) // true
-</code></pre></div>
+if (x &gt; 5 &amp;&amp; (y == 2 || z != 0) &amp;&amp; !(z &lt; 1)) // true
+</code></pre>
+<h3 id="switch-case"><code>switch - case</code></h3>
+<p>La sentència <strong><code>switch - case</code></strong> és similar a l'estructura <code>if - else if - else</code> i s'utilitza per a simplificar aquesta quan tenim moltes condicions:</p>
+<pre><code class="language-js">switch(condicio) {
+  case 'valor1':  // if (condicio === 'valor1')
+    ...
+    break;
+
+  case 'valor2':  // if (condicio === 'valor2')
+    ...
+    break;
+
+  default:
+    ...
+    break;
+}
+</code></pre>
+<p>Els valors poden ser numèrics o cadenes.</p>
+<p>La condició s'avalua sempre amb l'<strong>operador d'igualtat estricta <code>===</code></strong>.</p>
+<p>La sentència <strong><code>break</code></strong> causa l'eixida de l'estructura <code>switch</code>. No és necessària, però en general s'utilitza ja que una vegada es compleix la condició, el <code>case</code> que coincideix amb aquesta actua com a punt d'entrada, execuntatn-se les instruccions de tots els case a continuació d'aquest. Per exemple:</p>
+<pre><code class="language-js">let x = 0;
+switch (x) {
+  case 0:
+    num = &quot;Zero&quot;;
+  case 1:
+    num = &quot;U&quot;;
+  case 2:
+    num = &quot;Dos&quot;;
+    break;
+  case 3:
+    num = &quot;Tres&quot;;
+    break;
+}
+
+console.log(num) // &quot;Dos&quot;
+</code></pre>
+<p>En aquest codi si <code>x</code> val 0 o 1 el valor mostrat seria <code>"Dos"</code> ja que no tenim una sentència <code>break</code> per a eixir del <code>switch</code>.</p>
+<p>Per últim, la sentència <strong><code>default</code></strong> s'utilitza per a executar codi quan la condició no coincideix amb cap <code>case</code>. Si <code>default</code> està al final del <code>switch</code>, no és necessari el <code>break</code>.</p></div>
             </div>
         </div>
 
@@ -636,5 +697,5 @@ if (x &gt; 5 &amp;&amp; (y == 2 || z != 0) &amp;&amp; ! (z &lt; 1)) // true
 
 <!--
 MkDocs version : 1.4.2
-Build Date UTC : 2023-04-18 11:48:49.513479+00:00
+Build Date UTC : 2023-04-18 19:17:57.463411+00:00
 -->
