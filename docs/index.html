@@ -13,6 +13,7 @@
         <link href="css/font-awesome.min.css" rel="stylesheet">
         <link href="css/base.css" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css">
+        <link href="css/extra.css" rel="stylesheet">
 
         <script src="js/jquery-1.10.2.min.js" defer></script>
         <script src="js/bootstrap.min.js" defer></script>
@@ -79,6 +80,14 @@
               </ul>
             </li>
             <li class="nav-item" data-level="2"><a href="#operadors-matematics" class="nav-link">Operadors matemàtics</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#operadors-de-comparacio" class="nav-link">Operadors de comparació</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#sentencies-condicionals" class="nav-link">Sentencies condicionals</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -406,7 +415,147 @@ console.log(num); // 6
 </tr>
 </tbody>
 </table>
-<p>A l'igual que en matemàtiques, si 2 operadors tenen la mateixa precedència, s'avaluen d'esquerra a dreta i els <strong>parèntesis</strong> poden modificar la preferència agrupant operacions.</p></div>
+<p>A l'igual que en matemàtiques, si 2 operadors tenen la mateixa precedència, s'avaluen d'esquerra a dreta i els <strong>parèntesis</strong> poden modificar la preferència agrupant operacions.</p>
+<h2 id="operadors-de-comparacio">Operadors de comparació</h2>
+<p>Els operadors de comparació retornen un valor <strong>booleà</strong>. Són els següents:</p>
+<table>
+<thead>
+<tr>
+<th>Operador</th>
+<th>Descripció</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>==</td>
+<td>igual</td>
+</tr>
+<tr>
+<td>===</td>
+<td>igualtat estricta (mateix valor i mateix tipus)</td>
+</tr>
+<tr>
+<td>!=</td>
+<td>distint</td>
+</tr>
+<tr>
+<td>!==</td>
+<td>desigualtat estricta (distint valor i distint tipus)</td>
+</tr>
+<tr>
+<td>&gt;</td>
+<td>major</td>
+</tr>
+<tr>
+<td>&lt;</td>
+<td>menor</td>
+</tr>
+<tr>
+<td>&gt;=</td>
+<td>major o gual</td>
+</tr>
+<tr>
+<td>&lt;=</td>
+<td>menor o igual</td>
+</tr>
+<tr>
+<td>?</td>
+<td>operador ternari</td>
+</tr>
+</tbody>
+</table>
+<p>En comparar valors de diferents tipus, JavaScript converteix els valors a números:</p>
+<pre><code class="language-js">console.log( '1' &gt; 0 ); // true, la cadena '1' es converteix en el número 1
+console.log( '01' == 1 ); // true
+</code></pre>
+<p>Per a valors booleans, <code>true</code> es converteix en <code>1</code> i <code>false</code> en <code>0</code>.</p>
+<pre><code class="language-js">console.log( true == 1 ); // true
+console.log( false == 0 ); // true
+</code></pre>
+<p>L'operador d'igualtat estricta comprova els valors sense convertir els tipus:</p>
+<pre><code class="language-js">console.log( 0 === false ); // false
+console.log( '01' == 1 ); // false
+</code></pre>
+<h2 id="sentencies-condicionals">Sentencies condicionals</h2>
+<h3 id="if-else">if - else</h3>
+<p>La sentència <strong><code>if (...)</code></strong> avalua l'expressió booleana entre els parèntesis i executa el bloc de codi a continuació si el resultat de l'expressió és <code>true</code>:</p>
+<pre><code class="language-js">let edat = 18;
+
+if (edat &gt;= 18) {
+    console.log(&quot;Eres major d'edat&quot;);
+}
+</code></pre>
+<p>Podem afegir la sentència <strong><code>else</code></strong> per a que s'execute un bloc de codi alternatiu si l'avaluació de l'expressió entre parèntesis és <code>false</code>:</p>
+<pre><code class="language-js">if (edat &gt;= 18) {
+    console.log(&quot;Eres major d'edat&quot;);
+} else {
+    console.log(&quot;Eres menor d'edat&quot;);
+}
+</code></pre>
+<p>Si tenim més d'una condició, podem utilitzar <strong><code>else if</code></strong> per a avaluar-les totes:</p>
+<pre><code class="language-js">if (edat &lt; 0) {
+    console.log(&quot;Encara no has nascut!&quot;);
+} else if (edat &lt; 18) {
+    console.log(&quot;Eres menor d'edat&quot;);
+} else {
+    console.log(&quot;Eres major d'edat&quot;);
+}
+</code></pre>
+<h3 id="operador-ternari">Operador ternari <strong><code>?</code></strong></h3>
+<p>L'<strong>operador ternari</strong> s'utilitza per a simplificar una expressió <code>if else</code>. És especialment útil en assignacions.</p>
+<p>Per exemple, el següent codi:</p>
+<pre><code class="language-js">let missatge = edat &gt;= 18 ? &quot;Eres major d'edat&quot; : &quot;Eres menor d'edat&quot;;
+console.log(missatge);
+</code></pre>
+<p>Seria l'equivalent a:</p>
+<pre><code class="language-js">let missatge;
+
+if (edat &gt;= 18) {
+    missatge = &quot;Eres major d'edat&quot;;
+} else {
+    missatge = &quot;Eres menor d'edat&quot;;
+}
+
+console.log(missatge);
+</code></pre>
+<h3 id="operadors-logics">Operadors lògics</h3>
+<p>Els <strong>operadors lògics</strong> són:</p>
+<table>
+<thead>
+<tr>
+<th>Operador</th>
+<th>Valor</th>
+<th>Descripció</th>
+<th>Exemple <code>(x = 5; y = 2;</code>)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>&amp;&amp;</code></td>
+<td><code>and</code></td>
+<td><code>true</code> si les 2 expressions són <code>true</code></td>
+<td><code>(x &lt; 6 &amp;&amp; y &gt; 1) // true</code></td>
+</tr>
+<tr>
+<td><code>\|\|</code></td>
+<td><code>or</code></td>
+<td><code>true</code> si almenys una de les 2 expressions és <code>true</code></td>
+<td><code>(x == 4 \|\| y == 1) // false</code></td>
+</tr>
+<tr>
+<td><code>!</code></td>
+<td><code>not</code></td>
+<td>Negació de l'expressió</td>
+<td><code>!(x == 5) // false</code></td>
+</tr>
+</tbody>
+</table>
+<p>Aquests operadors poden combinar-se en vàries expressions, tenint en compte que l'odre de precedència és:</p>
+<p><strong><code>NOT &gt; AND &gt; OR</code></strong></p>
+<p>Per exemple:</p>
+<pre><code class="language-js">let x = 6, y = 2, z = 0;
+if (x &gt; 5 &amp;&amp; (y == 2 || z != 0) &amp;&amp; ! (z &lt; 1)) // true
+</code></pre></div>
             </div>
         </div>
 
@@ -487,5 +636,5 @@ console.log(num); // 6
 
 <!--
 MkDocs version : 1.4.2
-Build Date UTC : 2023-03-31 11:27:21.204714+00:00
+Build Date UTC : 2023-04-18 11:48:49.513479+00:00
 -->

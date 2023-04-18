@@ -2,3 +2,5 @@ site_name: Apunts de JavaScript
 theme: mkdocs
 docs_dir: 'md'
 site_dir: 'docs'
+extra_css:
+  - css/extra.css

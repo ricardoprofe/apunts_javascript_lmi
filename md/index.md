@@ -4,7 +4,7 @@
 
  Podem incloure el codi JavaScript dins del codi HTML amb l'etiqueta `<script>`:
 
-```html
+```html 
 <!DOCTYPE html>
 <html>
     <head>
@@ -385,3 +385,122 @@ En la següent taula es mostren els valors de precedència que té cada operador
 | 2 | asignacions | `=`, `+=`, etc.|
 
 A l'igual que en matemàtiques, si 2 operadors tenen la mateixa precedència, s'avaluen d'esquerra a dreta i els **parèntesis** poden modificar la preferència agrupant operacions.
+
+## Operadors de comparació
+
+Els operadors de comparació retornen un valor **booleà**. Són els següents:
+
+| Operador | Descripció |
+|------------|------|
+| ==  | 	igual |
+| ===  | 	igualtat estricta (mateix valor i mateix tipus) |
+| != 	 | distint |
+| !==  | 	desigualtat estricta (distint valor i distint tipus) |
+| >  | 	major |
+| <  | 	menor |
+| >=  | 	major o gual |
+| <=  | 	menor o igual |
+| ?  | 	operador ternari |
+
+En comparar valors de diferents tipus, JavaScript converteix els valors a números:
+
+``` js
+console.log( '1' > 0 ); // true, la cadena '1' es converteix en el número 1
+console.log( '01' == 1 ); // true
+```
+
+Per a valors booleans, `true` es converteix en `1` i `false` en `0`.
+
+``` js
+console.log( true == 1 ); // true
+console.log( false == 0 ); // true
+```
+
+L'operador d'igualtat estricta comprova els valors sense convertir els tipus:
+
+``` js
+console.log( 0 === false ); // false
+console.log( '01' == 1 ); // false
+```
+
+## Sentencies condicionals
+
+### if - else
+
+La sentència **`if (...)`** avalua l'expressió booleana entre els parèntesis i executa el bloc de codi a continuació si el resultat de l'expressió és `true`:
+
+``` js
+let edat = 18;
+
+if (edat >= 18) {
+    console.log("Eres major d'edat");
+}
+```
+
+Podem afegir la sentència **`else`** per a que s'execute un bloc de codi alternatiu si l'avaluació de l'expressió entre parèntesis és `false`:
+
+``` js
+if (edat >= 18) {
+    console.log("Eres major d'edat");
+} else {
+    console.log("Eres menor d'edat");
+}
+```
+
+Si tenim més d'una condició, podem utilitzar **`else if`** per a avaluar-les totes:
+
+``` js
+if (edat < 0) {
+    console.log("Encara no has nascut!");
+} else if (edat < 18) {
+    console.log("Eres menor d'edat");
+} else {
+    console.log("Eres major d'edat");
+}
+```
+
+### Operador ternari **`?`**
+
+L'**operador ternari** s'utilitza per a simplificar una expressió `if else`. És especialment útil en assignacions.
+
+Per exemple, el següent codi:
+
+``` js
+let missatge = edat >= 18 ? "Eres major d'edat" : "Eres menor d'edat";
+console.log(missatge);
+```
+
+Seria l'equivalent a:
+
+``` js
+let missatge;
+
+if (edat >= 18) {
+    missatge = "Eres major d'edat";
+} else {
+    missatge = "Eres menor d'edat";
+}
+
+console.log(missatge);
+```
+
+### Operadors lògics
+
+Els **operadors lògics** són:
+
+| Operador | Valor | Descripció |	Exemple `(x = 5; y = 2;`) |
+|------------|------|------|------|
+| `&&`  | `and`  | `true` si les 2 expressions són `true`	| `(x < 6 && y > 1) // true` 	 |
+| `\|\|`  | 	`or`  | `true` si almenys una de les 2 expressions és `true`	|	`(x == 4 \|\| y == 1) // false` 	 |
+| `!`  | 	`not` 	 | Negació de l'expressió | `!(x == 5) // false` |
+
+Aquests operadors poden combinar-se en vàries expressions, tenint en compte que l'odre de precedència és:
+
+**`NOT > AND > OR`**
+
+Per exemple:
+
+``` js
+let x = 6, y = 2, z = 0;
+if (x > 5 && (y == 2 || z != 0) && ! (z < 1)) // true
+```
