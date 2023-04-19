@@ -82,6 +82,18 @@
               <ul class="nav flex-column">
               </ul>
             </li>
+            <li class="nav-item" data-level="2"><a href="#validacio-de-tipus" class="nav-link">Validació de tipus</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#validacions-de-rangs-i-longituds" class="nav-link">Validacions de rangs i longituds</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#validacio-avancada" class="nav-link">Validació avançada</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
               </ul>
             </li>
         </ul>
@@ -127,7 +139,61 @@ function validar() {
 }
 &lt;/script&gt;
 </code></pre>
-<p>En aquest exemple estariem mostrant l'error dins del <code>span</code> amb <code>id</code> <em>"nomErr"</em>. Las classe <em>"error"</em> ens servirà per a assignar un estil CSS a tos els missatges d'error.</p></div>
+<p>En aquest exemple estariem mostrant l'error dins del <code>span</code> amb <code>id</code> <em>"nomErr"</em>. La classe <em>"error"</em> ens servirà per a assignar un estil CSS a tos els missatges d'error.</p>
+<p>Una funció molt util és <strong><code>trim()</code></strong>, que s'utilitza per a eliminar els espais a l'inici i al final de una cadena. Així, si un usuari escriu només espais en blanc en un camp d'un formulari, els podem eliminar:</p>
+<pre><code class="language-js">let camp = '   '; // Només espais
+console.log(camp == ''); // false
+camp = camp.trim();
+console.log(camp == ''); // true
+</code></pre>
+<h2 id="validacio-de-tipus">Validació de tipus</h2>
+<p>Podem utilitzar la funció <strong><code>isNan()</code></strong> per a saber si un valor conté un número vàlid (recordem que tots els valors dels formularis es llegixen com a strings). Aquesta funció converteix el valor a número i després comprova si el resultat és <strong><code>NaN</code></strong> (Not a number):</p>
+<pre><code class="language-js">console.log(isNaN('Hola')); // true
+console.log(isNaN('5')); // false
+console.log(isNaN('5.4')); // false
+console.log(isNaN('5,4')); // true, la conversió falla per la coma
+console.log(isNaN('')); // false!!, el valor de la conversió és 0
+</code></pre>
+<h2 id="validacions-de-rangs-i-longituds">Validacions de rangs i longituds</h2>
+<p>Podem validar que la cadena llegida tinga una longitud mínima o màxima usant la propietat <strong><code>length</code></strong> dels strings:</p>
+<pre><code class="language-js">console.log('hola'.length); // 4
+console.log(''.length); // 0
+console.log('  hola  '.length); // 8, compte amb els espais en blanc!
+console.log('  hola  '.trim().length); // 4
+</code></pre>
+<p>Com podem veure, és convenient usar <strong><code>trim()</code></strong> per a eliminar espais a l'inici i al final.</p>
+<p>En el cas de <strong>valors numèrics</strong>, podem comprovar fàcilment que estiguen entre un valor mínim i màxim:</p>
+<pre><code class="language-js">if (Number(valor) &lt; 0 || Number(valor) &gt; 15) {
+  console.log(&quot;El valor ha d'estar entre 0 i 15&quot;);
+} else {
+  console.log(&quot;Valor correcte&quot;);
+}
+</code></pre>
+<p>Recordem que és convenient fer abans la comprovació numèrica i  convertir els strings a valors numèrics.</p>
+<p>En el cas de les <strong>dates</strong>, podem comparar-les directament si tenim en compte que tenen el format <strong><code>yyyy-mm-dd</code></strong> i que són strings:</p>
+<pre><code class="language-js">dataActual = '2023-04-19';
+dataLlegida = '2021-01-01';
+
+if (dataLlegida === dataActual)
+    console.log('La data llegida correspon a hui');
+
+if (dataLlegida &lt; dataActual)
+    console.log('La data llegida és anterior a la data actual');
+
+if (dataLlegida &gt; dataActual)
+    console.log('La data llegida és posterior a la data actual');
+</code></pre>
+<h2 id="validacio-avancada">Validació avançada</h2>
+<p>Podem fer fer una validació més acurada utilitzant expressions regulars i el mètode <strong><code>test()</code></strong>, que retorna <code>true</code> si l'expressió regular es troba a la cadena passada com a argument:</p>
+<pre><code class="language-js">expressioRegular.test(cadena)
+</code></pre>
+<p>Per exemple, tenim l'espressió regular <code>/^\d*$/</code> que correspon amb una cadena que té  només dígits, sense altres caracters i una cadena llegida en la variable <em><code>valor</code></em>:</p>
+<pre><code class="language-js">if ( /^\d*$/.test(valor) ) {
+  console.log('El valor llegit és un número');
+} else {
+  console.log('El valor llegit NO és un número');
+}
+</code></pre></div>
             </div>
         </div>
 
