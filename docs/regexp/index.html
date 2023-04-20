@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>Expressions regulars - Apunts de JavaScript</title>
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css">
+        <link href="../css/extra.css" rel="stylesheet">
+
+        <script src="../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../js/bootstrap.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="..">Apunts de JavaScript</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="navitem">
+                                <a href=".." class="nav-link">JavaScript bàsic</a>
+                            </li>
+                            <li class="navitem active">
+                                <a href="./" class="nav-link">Expressions regulars</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../validacio/" class="nav-link">Validació de formularis</a>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href=".." class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="../validacio/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="1"><a href="#expressions-regulars" class="nav-link">Expressions regulars</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#funcions-de-javascript-per-a-regexs" class="nav-link">Funcions de JavaScript per a regExs</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#expressions-simples" class="nav-link">Expressions simples</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#classes-de-caracters" class="nav-link">Classes de caràcters</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#quantificadors-de-repeticions" class="nav-link">Quantificadors de repeticions</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#altres-modificadors" class="nav-link">Altres modificadors</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#ancores-de-posicio" class="nav-link">Àncores de posició</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#caracters-descape" class="nav-link">Caràcters d'escape</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="expressions-regulars">Expressions regulars</h1>
+<p>Les <strong>expressions regulars</strong>, comunament conegudes com <strong><em>"regex"</em></strong> o <strong><em>"RegExp"</em></strong>, són cadenes de text amb un format especial que s'utilitzen per trobar <strong>patrons</strong> al text. Les expressions regulars són una de les eines més potents disponibles per al processament i manipulació de text. Per exemple, es pot utilitzar per verificar si el format de les dades, és a dir, nom, correu electrònic, número de telèfon, etc. introduït per l'usuari, és correcte o no, trobar o substituir una cadena dins del contingut del text, etc.</p>
+<h2 id="funcions-de-javascript-per-a-regexs">Funcions de JavaScript per a regExs</h2>
+<p>En JavasCript tenim vàries funcions per a treballar amb expressions regulars.</p>
+<p>La que utilitzarem majoriatàriament per a validar cadenes és <strong><code>regex.test(str)</code></strong>:</p>
+<pre><code class="language-js">if ( /^\d*$/.test(valor) ) {
+  console.log('El valor llegit és un número');
+} else {
+  console.log('El valor llegit NO és un número');
+}
+</code></pre>
+<p>El mètode <strong><code>str.match(regex)</code></strong> cerca totes les aparicions de l'expressió regular en la cadena <code>str</code>. Si la expressió té el flag <strong><code>g</code></strong> (<code>global</code>, per a buscar totes les coincidències), retorna un array amb totes les coincidències:</p>
+<pre><code class="language-javascript">let regexp = /ola/g; 
+let str = &quot;Hola caracola&quot;;
+let result = str.match(regexp);
+console.log(result); // Array [ &quot;ola&quot;, &quot;ola&quot; ]
+console.log(result.length); // 2
+
+let str2 = &quot;Adeu&quot;;
+let result2 = str2.match(regexp);
+console.log(result2); // null
+</code></pre>
+<p>Si l'expressió no du el flag <strong><code>g</code></strong>, <code>match</code> retorna un array amb la cadena trobada i la posició de la primera coincidència.</p>
+<p>Finalment, <strong><code>str.replace(regexp, repl)</code></strong> reemplaça totes les coincidències de l'expressió <code>regexp</code> en la cadena <code>str</code> amb <code>repl</code>. Si està el flag <code>g</code>, reemplaçarà totes les coincidències, si no, només la primera:</p>
+<pre><code class="language-javascript">let regexp = /ola/g; 
+let str = &quot;Hola caracola&quot;;
+let result = str.replace(regexp, &quot;olo&quot;);
+console.log(result); // &quot;Holo caracolo&quot;
+</code></pre>
+<h2 id="expressions-simples">Expressions simples</h2>
+<p>Les expressions regulars en JavaScript es representen entre 2 barres <strong><code>/</code></strong>. Les barres funcionen de manera similar a les cometes per als strings. A més, després de la segona barra podem incloure <strong><code>flags</code></strong> o banderes que modifiquen la cerca de l'expressió en la cadena de text.</p>
+<p>Exemples d'expressions:</p>
+<pre><code class="language-javascript">let regexp = /hola/; // Sense flags
+let regexp = /hola/gm; // Amb flags
+</code></pre>
+<p>També podem usar una sintàxi més llarga:</p>
+<pre><code class="language-javascript">let regexp = new RegExp('hola', 'gm'); // equival a /hola/gm
+</code></pre>
+<p>Els caràcters que escrivim entre les 2 barres és la cadena de text que buscarà. Per exemple:</p>
+<pre><code class="language-javascript">let regexp = /ola/;
+regexp.test(&quot;Hola caracola&quot;); // true
+</code></pre>
+<p>Retorna <code>true</code> perquè ha trobat l'expressió a partir del segon caràcter.</p>
+<p>Amb el flag <code>i</code>, la cerca es fa ignorant majúscules i minúscules:</p>
+<pre><code class="language-javascript">let regexp = /hola/;
+regexp.test(&quot;Hola caracola&quot;); // false
+
+regexp = /hola/i;
+regexp.test(&quot;Hola caracola&quot;); // true
+</code></pre>
+<h2 id="classes-de-caracters">Classes de caràcters</h2>
+<p>Algunes classes de caràcters com ara dígits, lletres i espais en blanc s'utilitzen amb tanta freqüència que tenen abreviatures. La taula següent enumera algunes abreviatures predefinides:</p>
+<table>
+<thead>
+<tr>
+<th>Abreviatura</th>
+<th>Significat</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>.</td>
+<td>Qualsevol caràcter excepte nova línia (<code>\n</code>)</td>
+</tr>
+<tr>
+<td>\d</td>
+<td>Qualsevol dígit</td>
+</tr>
+<tr>
+<td>\D</td>
+<td>Qualsevol caràcter NO dígit</td>
+</tr>
+<tr>
+<td>\w</td>
+<td>Qualsevol caràcter alfanumèric</td>
+</tr>
+<tr>
+<td>\W</td>
+<td>Qualsevol caràcter NO alfanumèric</td>
+</tr>
+<tr>
+<td>\s</td>
+<td>Qualsevol espai, tabulador, nova línia (<code>\n</code>)</td>
+</tr>
+<tr>
+<td>\S</td>
+<td>Qualsevol caràcter NO espai, tabulador, nova línia (<code>\n</code>)</td>
+</tr>
+</tbody>
+</table>
+<p>El següent exemple reemplaça tots els espais d'una cadena per guions:</p>
+<pre><code class="language-js">let result = &quot;pim pam pum&quot;.replace(/\s/g, '-');
+console.log(result); // pim-pam-pum
+</code></pre>
+<p>Els claudàtors [ ], també representen classes de caràcters però les dpodem definir nosaltres. Significa que es buscarà qualsevol dels caràcters entre claudàtors:</p>
+<pre><code class="language-javascript">let regexp = /[ola]/g;
+let result = &quot;Hola caracola&quot;.match(regexp);
+console.log(result); // Array(8) [ &quot;o&quot;, &quot;l&quot;, &quot;a&quot;, &quot;a&quot;, &quot;a&quot;, &quot;o&quot;, &quot;l&quot;, &quot;a&quot; ]
+</code></pre>
+<p>Dins dels claudàtors es pot usar el signe de negació <strong><code>^</code></strong> per a que busque tots els caràcters excepte els que estàn entre claudàtors. I també es pot utilitzar el guió <strong><code>-</code></strong> per a que busque tots els acràcters entre els 2 indicats. Alguns exemples:</p>
+<table>
+<thead>
+<tr>
+<th>RegExp</th>
+<th>Significat</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>[abc]</td>
+<td>Coincideix amb <code>a</code>, <code>b</code>, o <code>c</code></td>
+</tr>
+<tr>
+<td>[^abc]</td>
+<td>Coincideix amb qualsevol caràcter excepte <code>a</code>, <code>b</code>, o <code>c</code></td>
+</tr>
+<tr>
+<td>[a-z]</td>
+<td>Qualsevol lletra en minúscula, de la <code>a</code> a la <code>z</code></td>
+</tr>
+<tr>
+<td>[A-Z]</td>
+<td>Qualsevol lletra en majúscula, de la <code>A</code> a la <code>Z</code></td>
+</tr>
+<tr>
+<td>[a-Z]</td>
+<td>Qualsevol lletra, en majúsculao minúscula</td>
+</tr>
+<tr>
+<td>[0-9]</td>
+<td>Qualsevol dígit, equival a <code>\d</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="quantificadors-de-repeticions">Quantificadors de repeticions</h2>
+<p>Si volem fer coincidir més d'un carècter, per exemple, suposem que voleu trobar paraules que contenen una o més instàncies de la lletra <code>p</code>, o paraules que contenen almenys dues <code>p</code>, hem d'utilitzar els <strong>quantificadors</strong>. Amb els quantificadors podem especificar quantes vegades ha de coincidir un caràcter d'una expressió regular.</p>
+<p>Alguns exemples:</p>
+<table>
+<thead>
+<tr>
+<th>RegExp</th>
+<th>Significat</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>a+</td>
+<td>Una o més ocurrències de la lletra <code>a</code> (<code>a</code>, <code>aa</code>, <code>aaa</code> ...)</td>
+</tr>
+<tr>
+<td>a*</td>
+<td>Zero o més ocurrències de la lletra <code>a</code> (coincidiria amb tots els caràcters!)</td>
+</tr>
+<tr>
+<td>la*</td>
+<td>Zero o més ocurrències de la cadena <code>la</code></td>
+</tr>
+<tr>
+<td>a?</td>
+<td>Zero o una ocurrències de la lletra <code>a</code> (coincidiria amb tots els caràcters!)</td>
+</tr>
+<tr>
+<td>a{2}</td>
+<td>Exactament 2 ocurrències de la lletra <code>a</code> (<code>aa</code>)</td>
+</tr>
+<tr>
+<td>a{2,}</td>
+<td>2 o més ocurrències de la lletra <code>a</code> (<code>aa</code>, <code>aaa</code> ...)</td>
+</tr>
+<tr>
+<td>\w{4}</td>
+<td>Qualsevol cadena de 5 caràcters alfanumèrics</td>
+</tr>
+<tr>
+<td>\d{9}</td>
+<td>Qualsevol cadena de 9 dígits</td>
+</tr>
+</tbody>
+</table>
+<p>Exemple:</p>
+<pre><code class="language-js">let result = &quot;Mamaaaaa&quot;.replace(/a{2,}/g, 'i');
+console.log(result); // Mami
+</code></pre>
+<h2 id="altres-modificadors">Altres modificadors</h2>
+<p>És comú usar la barra <strong><code>|</code></strong> junt amb parèntesis <strong><code>( )</code></strong> per a una cadena o altra de les indicades entre els parèntesis:</p>
+<pre><code class="language-javascript">let regexp = /(hola|cola)/gi;
+let result = &quot;Hola caracola&quot;.match(regexp);
+console.log(result); // Array(2) [ &quot;Hola&quot;, &quot;cola&quot; ]
+</code></pre>
+<p>Els parèntesis també es poden usar junt amb el quantificadors de repeticions per a buscar repeticions de cadenes. Per exemple, <code>va+</code> significa la lletra <code>v</code> seguida d'una o vàries <code>a</code>, però <code>(va)+</code> significa una o vàries rpeticions de la cadena <code>va</code>.</p>
+<h2 id="ancores-de-posicio">Àncores de posició</h2>
+<p>Quan volem buscar una expressió al principi o al final d'una cadena o de línies de textos llargs, podem usar les àncores. Les més comuns son <code>^</code> que busca al principi de la cadena i <code>$</code> que busca coincidències pel final. Per exemple:</p>
+<pre><code class="language-javascript">let regexp = /^hola/gi;
+regexp.test(&quot;Hola caracola&quot;); // true
+
+regexp = /hola$/i;
+regexp.test(&quot;Hola caracola&quot;); // false
+
+regexp = /ola$/i;
+let result = &quot;Hola caracola&quot;.match(regexp);
+console.log(result); // Array [ &quot;ola&quot; ]
+</code></pre>
+<p>Ací podem usar el flag <strong><code>m</code></strong> (multi-línea) per a tractar cada línia d'un text com a una cadena diferent, sent util per a tractar llistats que terminen en un salt de línia.</p>
+<h2 id="caracters-descape">Caràcters d'escape</h2></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = "..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../js/base.js" defer></script>
+        <script src="../search/main.js" defer></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>
