@@ -1,10 +1,10 @@
 # Expressions regulars
 
-Les **expressions regulars**, comunament conegudes com ***"regex"*** o ***"RegExp"***, són cadenes de text amb un format especial que s'utilitzen per trobar **patrons** al text. Les expressions regulars són una de les eines més potents disponibles per al processament i manipulació de text. Per exemple, es pot utilitzar per verificar si el format de les dades, és a dir, nom, correu electrònic, número de telèfon, etc. introduït per l'usuari, és correcte o no, trobar o substituir una cadena dins del contingut del text, etc.
+Les **expressions regulars**, comunment conegudes com ***"regex"*** o ***"RegExp"***, són cadenes de text amb un format especial que s'utilitzen per trobar **patrons** al text. Les expressions regulars són una de les eines més potents disponibles per al processament i manipulació de text. Per exemple, es pot utilitzar per verificar si el format de les dades (nom, correu electrònic, número de telèfon, etc.) introduïdes per l'usuari, és correcte o no, trobar o substituir una cadena dins del contingut del text, etc.
 
 ## Funcions de JavaScript per a regExs
 
-En JavasCript tenim vàries funcions per a treballar amb expressions regulars.
+En JavaScript tenim vàries funcions per a treballar amb expressions regulars.
 
 La que utilitzarem majoriatàriament per a validar cadenes és **`regex.test(str)`**:
 
@@ -16,7 +16,7 @@ if ( /^\d*$/.test(valor) ) {
 }
 ```
 
-El mètode **`str.match(regex)`** cerca totes les aparicions de l'expressió regular en la cadena `str`. Si la expressió té el flag **`g`** (`global`, per a buscar totes les coincidències), retorna un array amb totes les coincidències:
+El mètode **`str.match(regex)`** cerca totes les aparicions de l'expressió regular en la cadena `str`. Si l'expressió té el flag **`g`** (`global`, per a buscar totes les coincidències), retorna un array amb totes les coincidències:
 
 ```javascript
 let regexp = /ola/g; 
@@ -40,6 +40,17 @@ let str = "Hola caracola";
 let result = str.replace(regexp, "olo");
 console.log(result); // "Holo caracolo"
 ```
+
+> **La mateixa regexp utilitzada globalment amb `regexp.test()` pot fallar**, ja que JavaScript utilitza la propietat `lastIndex`, que guarda la última posició de cerca. Per a evitar-ho es pot reiniciar `lastIndex` (`regexp.lastIndex = 0`) o usar `str.match()` en lloc de `regexp.test()` per a comprovar que el resultat no és `null`:
+>
+```js
+if ( valor.match(/^\d*$/) ) {
+    console.log('El valor llegit és un número');
+} else {
+>   console.log('El valor llegit NO és un número');
+}
+```
+>
 
 ## Expressions simples
 
@@ -65,7 +76,7 @@ let regexp = /ola/;
 regexp.test("Hola caracola"); // true
 ```
 
-Retorna `true` perquè ha trobat l'expressió a partir del segon caràcter.
+Retorna `true` perquè ha trobat l'expressió `ola` a partir del segon caràcter.
 
 Amb el flag `i`, la cerca es fa ignorant majúscules i minúscules:
 
@@ -98,7 +109,7 @@ let result = "pim pam pum".replace(/\s/g, '-');
 console.log(result); // pim-pam-pum
 ```
 
-Els claudàtors [ ], també representen classes de caràcters però les dpodem definir nosaltres. Significa que es buscarà qualsevol dels caràcters entre claudàtors:
+Els claudàtors `[ ]`, també representen classes definides per nosaltres. Significa que es buscarà qualsevol dels caràcters entre claudàtors:
 
 ```javascript
 let regexp = /[ola]/g;
@@ -106,7 +117,7 @@ let result = "Hola caracola".match(regexp);
 console.log(result); // Array(8) [ "o", "l", "a", "a", "a", "o", "l", "a" ]
 ```
 
-Dins dels claudàtors es pot usar el signe de negació **`^`** per a que busque tots els caràcters excepte els que estàn entre claudàtors. I també es pot utilitzar el guió **`-`** per a que busque tots els acràcters entre els 2 indicats. Alguns exemples:
+Dins dels claudàtors es pot usar el signe de negació **`^`** per a que busque tots els caràcters excepte els que estàn entre claudàtors. I també es pot utilitzar el guió **`-`** per a que busque tots els caràcters entre els 2 indicats. Alguns exemples:
 
 | RegExp | Significat |
 |--------|------------|
@@ -114,12 +125,12 @@ Dins dels claudàtors es pot usar el signe de negació **`^`** per a que busque 
 | [^abc] | Coincideix amb qualsevol caràcter excepte `a`, `b`, o `c` |
 | [a-z] | Qualsevol lletra en minúscula, de la `a` a la `z` |
 | [A-Z] | Qualsevol lletra en majúscula, de la `A` a la `Z` |
-| [a-Z] | Qualsevol lletra, en majúsculao minúscula |
+| [a-Z] | Qualsevol lletra, en majúscula o minúscula |
 | [0-9] | Qualsevol dígit, equival a `\d` |
 
 ## Quantificadors de repeticions
 
-Si volem fer coincidir més d'un carècter, per exemple, suposem que voleu trobar paraules que contenen una o més instàncies de la lletra `p`, o paraules que contenen almenys dues `p`, hem d'utilitzar els **quantificadors**. Amb els quantificadors podem especificar quantes vegades ha de coincidir un caràcter d'una expressió regular.
+Si volem fer coincidir més d'un carècter, per exemple si volem trobar paraules que contenen una o més instàncies de la lletra `p`, o paraules que contenen almenys dues `p`, hem d'utilitzar els **quantificadors**. Amb els quantificadors podem especificar quantes vegades ha de coincidir un caràcter d'una expressió regular.
 
 Alguns exemples:
 
@@ -143,7 +154,7 @@ console.log(result); // Mami
 
 ## Altres modificadors
 
-És comú usar la barra **`|`** junt amb parèntesis **`( )`** per a una cadena o altra de les indicades entre els parèntesis:
+És comú usar la barra **`|`** junt amb parèntesis **`( )`** per a cercar una cadena o altra de les indicades entre els parèntesis:
 
 ```javascript
 let regexp = /(hola|cola)/gi;
@@ -152,6 +163,17 @@ console.log(result); // Array(2) [ "Hola", "cola" ]
 ```
 
 Els parèntesis també es poden usar junt amb el quantificadors de repeticions per a buscar repeticions de cadenes. Per exemple, `va+` significa la lletra `v` seguida d'una o vàries `a`, però `(va)+` significa una o vàries rpeticions de la cadena `va`.
+
+Un altre modificador molt útil és el **límit de paraula** **`\b`**. S'utilitza per a buscar paraules senceres, sense importar si estan al principi o al final de la cadena:
+
+```javascript
+let regexp = /\bJava\b/gi;
+let result = "Hola Java!".match(regexp);
+console.log(result); // Array [ "Java" ]
+
+result = "Hola JavaScript!".match(regexp);
+console.log(result); // null
+```
 
 ## Àncores de posició
 
@@ -169,6 +191,27 @@ let result = "Hola caracola".match(regexp);
 console.log(result); // Array [ "ola" ]
 ```
 
-Ací podem usar el flag **`m`** (multi-línea) per a tractar cada línia d'un text com a una cadena diferent, sent util per a tractar llistats que terminen en un salt de línia.
+Ací podem usar el flag **`m`** (multi-línea) per a tractar cada línia d'un text com a una cadena diferent, sent útil per a tractar llistats que terminen en un salt de línia.
 
 ## Caràcters d'escape
+
+Quan volem utilitzar en l'expressió regular els caràcters especials com `/`, `( )`, `[ ]`, etc. hem d'*escapar-los* per a que siguen interpretats com a caràcters normals.
+La forma d'escapar-los és per mitjà d'una barra invertida `\`:
+
+`\[, \], \\, \/, \^, \$, \., \|, \?, \*, \+, \(, \),`
+
+Si estem utilitzant `new RegExp` per a crear les expressions, no hem d'escapar el caràcter `/`, però en canvi hem d'escapar tots els caràcters `\`, ja que les cadenes utilitzen aquest caràcter com a caràcter d'escape.
+
+## Resum de flags
+
+Ja hem vist que els flags més utilitzats són `g`, `m` i `i`, però JavaScript té algun flag més. La següent taula resumeix tots els flags de JavaScript:
+
+| Flag | Significat |
+|------|------|
+| **`i`** | La cerca no distingeix entre majúscules i minúscules |
+| **`g`** | La cerca troba totes les coincidències, sense `g`, només es torna la primera coincidència. |
+| **`m`** | Mode multi-línea |
+| **`d`** | Habilita el mode *dotall*, que permet que un punt `.` coincidisca amb el caràcter de nova línia `\n` |
+| **`u`** | Permet el suport complet d'Unicode |
+| **`y`** | Mode adhesiu, cerca en una posició exacta indicada per `lastIndex` |
+

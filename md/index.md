@@ -493,7 +493,7 @@ Els **operadors lògics** són:
 | Operador | Valor | Descripció |	Exemple `(x = 5; y = 2;`) |
 |------------|------|------|------|
 | `&&`  | `and`  | `true` si les 2 expressions són `true`	| `(x < 6 && y > 1) // true` 	 |
-| `\|\|`  | 	`or`  | `true` si almenys una de les 2 expressions és `true`	|	`(x == 4 \|\| y == 1) // false` 	 |
+| `||`  | 	`or`  | `true` si almenys una de les 2 expressions és `true`	|	`(x == 4 || y == 1) // false` 	 |
 | `!`  | 	`not` 	 | Negació de l'expressió | `!(x == 5) // false` |
 
 Aquests operadors poden combinar-se en vàries expressions, tenint en compte que l'odre de precedència és:
@@ -531,7 +531,7 @@ Els valors poden ser numèrics o cadenes.
 
 La condició s'avalua sempre amb l'**operador d'igualtat estricta `===`**.
 
-La sentència **`break`** causa l'eixida de l'estructura `switch`. No és necessària, però en general s'utilitza ja que una vegada es compleix la condició, el `case` que coincideix amb aquesta actua com a punt d'entrada, execuntatn-se les instruccions de tots els case a continuació d'aquest. Per exemple:
+La sentència **`break`** causa l'eixida de l'estructura `switch`. No és necessària, però en general s'utilitza ja que una vegada es compleix la condició, el `case` que coincideix amb aquesta actua com a punt d'entrada, executant-se les instruccions de tots els case a continuació d'aquest. Per exemple:
 
 ```js
 let x = 0;

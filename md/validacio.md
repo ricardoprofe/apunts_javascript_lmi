@@ -62,7 +62,7 @@ console.log(camp == ''); // true
 
 ## Validació de tipus
 
-Podem utilitzar la funció **`isNan()`** per a saber si un valor conté un número vàlid (recordem que tots els valors dels formularis es llegixen com a strings). Aquesta funció converteix el valor a número i després comprova si el resultat és **`NaN`** (Not a number):
+Podem utilitzar la funció **`isNan()`** per a saber si un valor conté un número vàlid (recordem que tots els valors dels formularis es llegeixen com a strings). Aquesta funció converteix el valor a número i després comprova si el resultat és **`NaN`** (Not a number):
 
 ```js
 console.log(isNaN('Hola')); // true
@@ -115,7 +115,7 @@ if (dataLlegida > dataActual)
 
 ## Validació avançada
 
-Podem fer fer una validació més acurada utilitzant expressions regulars i el mètode **`test()`**, que retorna `true` si l'expressió regular es troba a la cadena passada com a argument:
+Podem fer fer una validació més acurada utilitzant expressions regulars i els mètodes **`test()`** o **`match()`**. Per exemple, `test()` retorna `true` si l'expressió regular es troba a la cadena passada com a argument:
 
 ```js
 expressioRegular.test(cadena)
