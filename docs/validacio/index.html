@@ -150,7 +150,7 @@ camp = camp.trim();
 console.log(camp == ''); // true
 </code></pre>
 <h2 id="validacio-de-tipus">Validació de tipus</h2>
-<p>Podem utilitzar la funció <strong><code>isNan()</code></strong> per a saber si un valor conté un número vàlid (recordem que tots els valors dels formularis es llegixen com a strings). Aquesta funció converteix el valor a número i després comprova si el resultat és <strong><code>NaN</code></strong> (Not a number):</p>
+<p>Podem utilitzar la funció <strong><code>isNan()</code></strong> per a saber si un valor conté un número vàlid (recordem que tots els valors dels formularis es llegeixen com a strings). Aquesta funció converteix el valor a número i després comprova si el resultat és <strong><code>NaN</code></strong> (Not a number):</p>
 <pre><code class="language-js">console.log(isNaN('Hola')); // true
 console.log(isNaN('5')); // false
 console.log(isNaN('5.4')); // false
@@ -187,7 +187,7 @@ if (dataLlegida &gt; dataActual)
     console.log('La data llegida és posterior a la data actual');
 </code></pre>
 <h2 id="validacio-avancada">Validació avançada</h2>
-<p>Podem fer fer una validació més acurada utilitzant expressions regulars i el mètode <strong><code>test()</code></strong>, que retorna <code>true</code> si l'expressió regular es troba a la cadena passada com a argument:</p>
+<p>Podem fer fer una validació més acurada utilitzant expressions regulars i els mètodes <strong><code>test()</code></strong> o <strong><code>match()</code></strong>. Per exemple, <code>test()</code> retorna <code>true</code> si l'expressió regular es troba a la cadena passada com a argument:</p>
 <pre><code class="language-js">expressioRegular.test(cadena)
 </code></pre>
 <p>Per exemple, tenim l'espressió regular <code>/^\d*$/</code> que correspon amb una cadena que té  només dígits, sense altres caracters i una cadena llegida en la variable <em><code>valor</code></em>:</p>

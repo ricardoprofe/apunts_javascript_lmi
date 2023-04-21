@@ -109,6 +109,10 @@
               <ul class="nav flex-column">
               </ul>
             </li>
+            <li class="nav-item" data-level="2"><a href="#resum-de-flags" class="nav-link">Resum de flags</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
               </ul>
             </li>
         </ul>
@@ -117,9 +121,9 @@
                     <div class="col-md-9" role="main">
 
 <h1 id="expressions-regulars">Expressions regulars</h1>
-<p>Les <strong>expressions regulars</strong>, comunament conegudes com <strong><em>"regex"</em></strong> o <strong><em>"RegExp"</em></strong>, són cadenes de text amb un format especial que s'utilitzen per trobar <strong>patrons</strong> al text. Les expressions regulars són una de les eines més potents disponibles per al processament i manipulació de text. Per exemple, es pot utilitzar per verificar si el format de les dades, és a dir, nom, correu electrònic, número de telèfon, etc. introduït per l'usuari, és correcte o no, trobar o substituir una cadena dins del contingut del text, etc.</p>
+<p>Les <strong>expressions regulars</strong>, comunment conegudes com <strong><em>"regex"</em></strong> o <strong><em>"RegExp"</em></strong>, són cadenes de text amb un format especial que s'utilitzen per trobar <strong>patrons</strong> al text. Les expressions regulars són una de les eines més potents disponibles per al processament i manipulació de text. Per exemple, es pot utilitzar per verificar si el format de les dades (nom, correu electrònic, número de telèfon, etc.) introduïdes per l'usuari, és correcte o no, trobar o substituir una cadena dins del contingut del text, etc.</p>
 <h2 id="funcions-de-javascript-per-a-regexs">Funcions de JavaScript per a regExs</h2>
-<p>En JavasCript tenim vàries funcions per a treballar amb expressions regulars.</p>
+<p>En JavaScript tenim vàries funcions per a treballar amb expressions regulars.</p>
 <p>La que utilitzarem majoriatàriament per a validar cadenes és <strong><code>regex.test(str)</code></strong>:</p>
 <pre><code class="language-js">if ( /^\d*$/.test(valor) ) {
   console.log('El valor llegit és un número');
@@ -127,7 +131,7 @@
   console.log('El valor llegit NO és un número');
 }
 </code></pre>
-<p>El mètode <strong><code>str.match(regex)</code></strong> cerca totes les aparicions de l'expressió regular en la cadena <code>str</code>. Si la expressió té el flag <strong><code>g</code></strong> (<code>global</code>, per a buscar totes les coincidències), retorna un array amb totes les coincidències:</p>
+<p>El mètode <strong><code>str.match(regex)</code></strong> cerca totes les aparicions de l'expressió regular en la cadena <code>str</code>. Si l'expressió té el flag <strong><code>g</code></strong> (<code>global</code>, per a buscar totes les coincidències), retorna un array amb totes les coincidències:</p>
 <pre><code class="language-javascript">let regexp = /ola/g; 
 let str = &quot;Hola caracola&quot;;
 let result = str.match(regexp);
@@ -145,6 +149,17 @@ let str = &quot;Hola caracola&quot;;
 let result = str.replace(regexp, &quot;olo&quot;);
 console.log(result); // &quot;Holo caracolo&quot;
 </code></pre>
+<blockquote>
+<p><strong>La mateixa regexp utilitzada globalment amb <code>regexp.test()</code> pot fallar</strong>, ja que JavaScript utilitza la propietat <code>lastIndex</code>, que guarda la última posició de cerca. Per a evitar-ho es pot reiniciar <code>lastIndex</code> (<code>regexp.lastIndex = 0</code>) o usar <code>str.match()</code> en lloc de <code>regexp.test()</code> per a comprovar que el resultat no és <code>null</code>:
+</p>
+</blockquote>
+<pre><code class="language-js">if ( valor.match(/^\d*$/) ) {
+    console.log('El valor llegit és un número');
+} else {
+&gt;   console.log('El valor llegit NO és un número');
+}
+</code></pre>
+<blockquote></blockquote>
 <h2 id="expressions-simples">Expressions simples</h2>
 <p>Les expressions regulars en JavaScript es representen entre 2 barres <strong><code>/</code></strong>. Les barres funcionen de manera similar a les cometes per als strings. A més, després de la segona barra podem incloure <strong><code>flags</code></strong> o banderes que modifiquen la cerca de l'expressió en la cadena de text.</p>
 <p>Exemples d'expressions:</p>
@@ -158,7 +173,7 @@ let regexp = /hola/gm; // Amb flags
 <pre><code class="language-javascript">let regexp = /ola/;
 regexp.test(&quot;Hola caracola&quot;); // true
 </code></pre>
-<p>Retorna <code>true</code> perquè ha trobat l'expressió a partir del segon caràcter.</p>
+<p>Retorna <code>true</code> perquè ha trobat l'expressió <code>ola</code> a partir del segon caràcter.</p>
 <p>Amb el flag <code>i</code>, la cerca es fa ignorant majúscules i minúscules:</p>
 <pre><code class="language-javascript">let regexp = /hola/;
 regexp.test(&quot;Hola caracola&quot;); // false
@@ -210,12 +225,12 @@ regexp.test(&quot;Hola caracola&quot;); // true
 <pre><code class="language-js">let result = &quot;pim pam pum&quot;.replace(/\s/g, '-');
 console.log(result); // pim-pam-pum
 </code></pre>
-<p>Els claudàtors [ ], també representen classes de caràcters però les dpodem definir nosaltres. Significa que es buscarà qualsevol dels caràcters entre claudàtors:</p>
+<p>Els claudàtors <code>[ ]</code>, també representen classes definides per nosaltres. Significa que es buscarà qualsevol dels caràcters entre claudàtors:</p>
 <pre><code class="language-javascript">let regexp = /[ola]/g;
 let result = &quot;Hola caracola&quot;.match(regexp);
 console.log(result); // Array(8) [ &quot;o&quot;, &quot;l&quot;, &quot;a&quot;, &quot;a&quot;, &quot;a&quot;, &quot;o&quot;, &quot;l&quot;, &quot;a&quot; ]
 </code></pre>
-<p>Dins dels claudàtors es pot usar el signe de negació <strong><code>^</code></strong> per a que busque tots els caràcters excepte els que estàn entre claudàtors. I també es pot utilitzar el guió <strong><code>-</code></strong> per a que busque tots els acràcters entre els 2 indicats. Alguns exemples:</p>
+<p>Dins dels claudàtors es pot usar el signe de negació <strong><code>^</code></strong> per a que busque tots els caràcters excepte els que estàn entre claudàtors. I també es pot utilitzar el guió <strong><code>-</code></strong> per a que busque tots els caràcters entre els 2 indicats. Alguns exemples:</p>
 <table>
 <thead>
 <tr>
@@ -242,7 +257,7 @@ console.log(result); // Array(8) [ &quot;o&quot;, &quot;l&quot;, &quot;a&quot;, 
 </tr>
 <tr>
 <td>[a-Z]</td>
-<td>Qualsevol lletra, en majúsculao minúscula</td>
+<td>Qualsevol lletra, en majúscula o minúscula</td>
 </tr>
 <tr>
 <td>[0-9]</td>
@@ -251,7 +266,7 @@ console.log(result); // Array(8) [ &quot;o&quot;, &quot;l&quot;, &quot;a&quot;, 
 </tbody>
 </table>
 <h2 id="quantificadors-de-repeticions">Quantificadors de repeticions</h2>
-<p>Si volem fer coincidir més d'un carècter, per exemple, suposem que voleu trobar paraules que contenen una o més instàncies de la lletra <code>p</code>, o paraules que contenen almenys dues <code>p</code>, hem d'utilitzar els <strong>quantificadors</strong>. Amb els quantificadors podem especificar quantes vegades ha de coincidir un caràcter d'una expressió regular.</p>
+<p>Si volem fer coincidir més d'un carècter, per exemple si volem trobar paraules que contenen una o més instàncies de la lletra <code>p</code>, o paraules que contenen almenys dues <code>p</code>, hem d'utilitzar els <strong>quantificadors</strong>. Amb els quantificadors podem especificar quantes vegades ha de coincidir un caràcter d'una expressió regular.</p>
 <p>Alguns exemples:</p>
 <table>
 <thead>
@@ -300,12 +315,20 @@ console.log(result); // Array(8) [ &quot;o&quot;, &quot;l&quot;, &quot;a&quot;, 
 console.log(result); // Mami
 </code></pre>
 <h2 id="altres-modificadors">Altres modificadors</h2>
-<p>És comú usar la barra <strong><code>|</code></strong> junt amb parèntesis <strong><code>( )</code></strong> per a una cadena o altra de les indicades entre els parèntesis:</p>
+<p>És comú usar la barra <strong><code>|</code></strong> junt amb parèntesis <strong><code>( )</code></strong> per a cercar una cadena o altra de les indicades entre els parèntesis:</p>
 <pre><code class="language-javascript">let regexp = /(hola|cola)/gi;
 let result = &quot;Hola caracola&quot;.match(regexp);
 console.log(result); // Array(2) [ &quot;Hola&quot;, &quot;cola&quot; ]
 </code></pre>
 <p>Els parèntesis també es poden usar junt amb el quantificadors de repeticions per a buscar repeticions de cadenes. Per exemple, <code>va+</code> significa la lletra <code>v</code> seguida d'una o vàries <code>a</code>, però <code>(va)+</code> significa una o vàries rpeticions de la cadena <code>va</code>.</p>
+<p>Un altre modificador molt útil és el <strong>límit de paraula</strong> <strong><code>\b</code></strong>. S'utilitza per a buscar paraules senceres, sense importar si estan al principi o al final de la cadena:</p>
+<pre><code class="language-javascript">let regexp = /\bJava\b/gi;
+let result = &quot;Hola Java!&quot;.match(regexp);
+console.log(result); // Array [ &quot;Java&quot; ]
+
+result = &quot;Hola JavaScript!&quot;.match(regexp);
+console.log(result); // null
+</code></pre>
 <h2 id="ancores-de-posicio">Àncores de posició</h2>
 <p>Quan volem buscar una expressió al principi o al final d'una cadena o de línies de textos llargs, podem usar les àncores. Les més comuns son <code>^</code> que busca al principi de la cadena i <code>$</code> que busca coincidències pel final. Per exemple:</p>
 <pre><code class="language-javascript">let regexp = /^hola/gi;
@@ -318,8 +341,48 @@ regexp = /ola$/i;
 let result = &quot;Hola caracola&quot;.match(regexp);
 console.log(result); // Array [ &quot;ola&quot; ]
 </code></pre>
-<p>Ací podem usar el flag <strong><code>m</code></strong> (multi-línea) per a tractar cada línia d'un text com a una cadena diferent, sent util per a tractar llistats que terminen en un salt de línia.</p>
-<h2 id="caracters-descape">Caràcters d'escape</h2></div>
+<p>Ací podem usar el flag <strong><code>m</code></strong> (multi-línea) per a tractar cada línia d'un text com a una cadena diferent, sent útil per a tractar llistats que terminen en un salt de línia.</p>
+<h2 id="caracters-descape">Caràcters d'escape</h2>
+<p>Quan volem utilitzar en l'expressió regular els caràcters especials com <code>/</code>, <code>( )</code>, <code>[ ]</code>, etc. hem d'<em>escapar-los</em> per a que siguen interpretats com a caràcters normals.
+La forma d'escapar-los és per mitjà d'una barra invertida <code>\</code>:</p>
+<p><code>\[, \], \\, \/, \^, \$, \., \|, \?, \*, \+, \(, \),</code></p>
+<p>Si estem utilitzant <code>new RegExp</code> per a crear les expressions, no hem d'escapar el caràcter <code>/</code>, però en canvi hem d'escapar tots els caràcters <code>\</code>, ja que les cadenes utilitzen aquest caràcter com a caràcter d'escape.</p>
+<h2 id="resum-de-flags">Resum de flags</h2>
+<p>Ja hem vist que els flags més utilitzats són <code>g</code>, <code>m</code> i <code>i</code>, però JavaScript té algun flag més. La següent taula resumeix tots els flags de JavaScript:</p>
+<table>
+<thead>
+<tr>
+<th>Flag</th>
+<th>Significat</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong><code>i</code></strong></td>
+<td>La cerca no distingeix entre majúscules i minúscules</td>
+</tr>
+<tr>
+<td><strong><code>g</code></strong></td>
+<td>La cerca troba totes les coincidències, sense <code>g</code>, només es torna la primera coincidència.</td>
+</tr>
+<tr>
+<td><strong><code>m</code></strong></td>
+<td>Mode multi-línea</td>
+</tr>
+<tr>
+<td><strong><code>d</code></strong></td>
+<td>Habilita el mode <em>dotall</em>, que permet que un punt <code>.</code> coincidisca amb el caràcter de nova línia <code>\n</code></td>
+</tr>
+<tr>
+<td><strong><code>u</code></strong></td>
+<td>Permet el suport complet d'Unicode</td>
+</tr>
+<tr>
+<td><strong><code>y</code></strong></td>
+<td>Mode adhesiu, cerca en una posició exacta indicada per <code>lastIndex</code></td>
+</tr>
+</tbody>
+</table></div>
             </div>
         </div>
 
