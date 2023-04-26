@@ -42,15 +42,14 @@ console.log(result); // "Holo caracolo"
 ```
 
 > **La mateixa regexp utilitzada globalment amb `regexp.test()` pot fallar**, ja que JavaScript utilitza la propietat `lastIndex`, que guarda la última posició de cerca. Per a evitar-ho es pot reiniciar `lastIndex` (`regexp.lastIndex = 0`) o usar `str.match()` en lloc de `regexp.test()` per a comprovar que el resultat no és `null`:
->
+
 ```js
 if ( valor.match(/^\d*$/) ) {
     console.log('El valor llegit és un número');
 } else {
->   console.log('El valor llegit NO és un número');
+   console.log('El valor llegit NO és un número');
 }
 ```
->
 
 ## Expressions simples
 
@@ -125,7 +124,7 @@ Dins dels claudàtors es pot usar el signe de negació **`^`** per a que busque 
 | [^abc] | Coincideix amb qualsevol caràcter excepte `a`, `b`, o `c` |
 | [a-z] | Qualsevol lletra en minúscula, de la `a` a la `z` |
 | [A-Z] | Qualsevol lletra en majúscula, de la `A` a la `Z` |
-| [a-Z] | Qualsevol lletra, en majúscula o minúscula |
+| [a-zA-Z] | Qualsevol lletra, en majúscula o minúscula |
 | [0-9] | Qualsevol dígit, equival a `\d` |
 
 ## Quantificadors de repeticions

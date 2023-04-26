@@ -150,16 +150,14 @@ let result = str.replace(regexp, &quot;olo&quot;);
 console.log(result); // &quot;Holo caracolo&quot;
 </code></pre>
 <blockquote>
-<p><strong>La mateixa regexp utilitzada globalment amb <code>regexp.test()</code> pot fallar</strong>, ja que JavaScript utilitza la propietat <code>lastIndex</code>, que guarda la última posició de cerca. Per a evitar-ho es pot reiniciar <code>lastIndex</code> (<code>regexp.lastIndex = 0</code>) o usar <code>str.match()</code> en lloc de <code>regexp.test()</code> per a comprovar que el resultat no és <code>null</code>:
-</p>
+<p><strong>La mateixa regexp utilitzada globalment amb <code>regexp.test()</code> pot fallar</strong>, ja que JavaScript utilitza la propietat <code>lastIndex</code>, que guarda la última posició de cerca. Per a evitar-ho es pot reiniciar <code>lastIndex</code> (<code>regexp.lastIndex = 0</code>) o usar <code>str.match()</code> en lloc de <code>regexp.test()</code> per a comprovar que el resultat no és <code>null</code>:</p>
 </blockquote>
 <pre><code class="language-js">if ( valor.match(/^\d*$/) ) {
     console.log('El valor llegit és un número');
 } else {
-&gt;   console.log('El valor llegit NO és un número');
+   console.log('El valor llegit NO és un número');
 }
 </code></pre>
-<blockquote></blockquote>
 <h2 id="expressions-simples">Expressions simples</h2>
 <p>Les expressions regulars en JavaScript es representen entre 2 barres <strong><code>/</code></strong>. Les barres funcionen de manera similar a les cometes per als strings. A més, després de la segona barra podem incloure <strong><code>flags</code></strong> o banderes que modifiquen la cerca de l'expressió en la cadena de text.</p>
 <p>Exemples d'expressions:</p>
@@ -256,7 +254,7 @@ console.log(result); // Array(8) [ &quot;o&quot;, &quot;l&quot;, &quot;a&quot;, 
 <td>Qualsevol lletra en majúscula, de la <code>A</code> a la <code>Z</code></td>
 </tr>
 <tr>
-<td>[a-Z]</td>
+<td>[a-zA-Z]</td>
 <td>Qualsevol lletra, en majúscula o minúscula</td>
 </tr>
 <tr>

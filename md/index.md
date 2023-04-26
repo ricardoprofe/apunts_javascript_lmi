@@ -554,3 +554,177 @@ console.log(num) // "Dos"
 En aquest codi si `x` val 0 o 1 el valor mostrat seria `"Dos"` ja que no tenim una sentència `break` per a eixir del `switch`.
 
 Per últim, la sentència **`default`** s'utilitza per a executar codi quan la condició no coincideix amb cap `case`. Si `default` està al final del `switch`, no és necessari el `break`.
+
+## Bucles
+
+Els bucles s'utilitzen per a repetir a mateixa acció un nombre determinat de voltes o mentre es complisca una condició.
+
+### Bucles amb while
+
+La forma bàsica d'un bucle **`while`** és la següent:
+
+```javascript
+while (condició) {
+  // instruccions
+}
+```
+
+És a dir, mentre es complisca la condició, s'entrarà al bucle i s'executaran les instruccions del seu cos.
+
+També existeix una variant **`do .. while`** en la qual es comprova la condició al final de l'execució del cos del bucle:
+
+```javascript
+do {
+  // instruccions
+} while (condició);
+```
+
+Exemples:
+
+```javascript
+let i = 0;
+while (i < 10) {
+  console.log(i);
+  i++;
+}
+
+let j = 0
+do {
+  console.log(j);
+  j++;
+} while (j < 10);
+```
+
+### Bucles for
+
+Els bucles **`for`** són especialment útils quan coneguem el nombre de repeticions. Tenen la forma:
+
+```javascript
+for (inicialització; condició; increment/decrement) {
+    // instruccions
+}
+```
+
+- Inicialització: assignem un valor inicial a la variable comptador.
+- Condició: la condició que s'ha de complir per a executar les instruccions del cos del bucle.
+- Increment o decrement de la variable comptador:
+
+Alguns exemples típics:
+
+```javascript
+// Imprimir els números del 0 al 9
+for (let i = 0; i < 10; i++) {
+    console.log(i);
+}
+
+// Imprimir els números 10, 8, 6, 4, 2
+for (let i = 10; i > 0; i -= 2) {
+    console.log(i);
+}
+```
+
+### continue i break
+
+Existeixen 2 instruccions que trenquen l'execució del bucle:
+
+- **`continue`**: no executa la resta de la iteració actual i salta al començament de la següent iteració.
+- **`break`**: ix del bucle sense executar la resta d'instruccions de la iteració actual ni la resta d'iteracions.
+
+## Arrays
+
+Els **arrays** són **col·leccions ordenades** de variables o objectes.
+
+Es pot declarar un array de vàries maneres:
+
+```javascript
+let a = new Array(); //Array buit
+let b = []; //Array buit
+let dies = ["Dilluns", "Dimarts", "Dimecres"]; // Array amb valors inicials
+let notes = new Array("Suficient", "Bé", "Notable"); // Array amb valors inicials
+```
+
+En el cas de l'arrays dies, podem accedir als seus valor indicant el seu índex, tenint en compte que el primer valor té l'index 0:
+
+```javascript
+console.log(dies[0]); // "Dilluns"
+console.log(dies[1]); // "Dimarts"
+console.log(dies[2]); // "Dimecres"
+console.log(dies[3]); // undefined
+```
+
+Com es pot veure, si accedim aun índex sense cap valor obtenim `undefined`.
+
+De la mateixa manera podem modificar un valor en concret:
+
+```javascript
+dies[0] = "Diumenge";
+console.log(dies[0]); // "Diumenge"
+```
+
+També podem afegir elements indicant l'index del nou element, inclús si deixem índexs buits sense assignar:
+
+```javascript
+dies[3] = "Dijous";
+dies[5] = "Dissabte";
+
+console.log(dies[3]); // "Dijous"
+console.log(dies[4]); // undefined
+console.log(dies[5]); // "Dissabte"
+```
+
+Per a evitar tindre en compte quins índexs estan lliures a l'hora d'afegir elements, és millor utilitzar el mètode **`push()`**, el qual afegeix el  nou element al final de l'array:
+
+```javascript
+dies.push("Divendres");
+```
+
+La propietat **`length`** retorna el nombre total d'elements de l'array:
+
+```javascript
+let dies = ["Dilluns", "Dimarts", "Dimecres"]; 
+console.log(dies.length); // 3
+```
+
+El mètode **`toString()`** retorna un string amb tots els valors de l'array separats per comes:
+
+```javascript
+console.log(dies.toString());
+```
+
+Per últim, recordar que els arrays són objectes:
+
+```javascript
+console.log(typeof dies); // object
+```
+
+### Iterar un array
+
+La forma més usual de recòrrer arrays és utilitzant un bucle **`for`** utilitzant els índexs:
+
+```javascript
+for (let i = 0; i < dies.length; i++) {
+    console.log(dies[i]);
+}
+```
+
+Existeix una forma de bucle, **`for .. of`**, per a recòrrer arrays:
+
+```javascript
+for (let dia of dies) {
+    console.log(dia);
+}
+```
+
+El mètode **`array.foreach(func)`** també es pot emprar per a executar una determinada funció per a cada valor de l'array:
+
+```javascript
+dies.foreach(myFunction);
+
+// Imprimeix tots els valor en majúscules
+function myFunction(value) {
+    value = value.toUpperCase();
+    console.log(value);
+}
+```
+
+

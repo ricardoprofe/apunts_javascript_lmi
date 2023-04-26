@@ -117,6 +117,14 @@
               <ul class="nav flex-column">
               </ul>
             </li>
+            <li class="nav-item" data-level="2"><a href="#bucles" class="nav-link">Bucles</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#arrays" class="nav-link">Arrays</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
               </ul>
             </li>
         </ul>
@@ -619,7 +627,122 @@ switch (x) {
 console.log(num) // &quot;Dos&quot;
 </code></pre>
 <p>En aquest codi si <code>x</code> val 0 o 1 el valor mostrat seria <code>"Dos"</code> ja que no tenim una sentència <code>break</code> per a eixir del <code>switch</code>.</p>
-<p>Per últim, la sentència <strong><code>default</code></strong> s'utilitza per a executar codi quan la condició no coincideix amb cap <code>case</code>. Si <code>default</code> està al final del <code>switch</code>, no és necessari el <code>break</code>.</p></div>
+<p>Per últim, la sentència <strong><code>default</code></strong> s'utilitza per a executar codi quan la condició no coincideix amb cap <code>case</code>. Si <code>default</code> està al final del <code>switch</code>, no és necessari el <code>break</code>.</p>
+<h2 id="bucles">Bucles</h2>
+<p>Els bucles s'utilitzen per a repetir a mateixa acció un nombre determinat de voltes o mentre es complisca una condició.</p>
+<h3 id="bucles-amb-while">Bucles amb while</h3>
+<p>La forma bàsica d'un bucle <strong><code>while</code></strong> és la següent:</p>
+<pre><code class="language-javascript">while (condició) {
+  // instruccions
+}
+</code></pre>
+<p>És a dir, mentre es complisca la condició, s'entrarà al bucle i s'executaran les instruccions del seu cos.</p>
+<p>També existeix una variant <strong><code>do .. while</code></strong> en la qual es comprova la condició al final de l'execució del cos del bucle:</p>
+<pre><code class="language-javascript">do {
+  // instruccions
+} while (condició);
+</code></pre>
+<p>Exemples:</p>
+<pre><code class="language-javascript">let i = 0;
+while (i &lt; 10) {
+  console.log(i);
+  i++;
+}
+
+let j = 0
+do {
+  console.log(j);
+  j++;
+} while (j &lt; 10);
+</code></pre>
+<h3 id="bucles-for">Bucles for</h3>
+<p>Els bucles <strong><code>for</code></strong> són especialment útils quan coneguem el nombre de repeticions. Tenen la forma:</p>
+<pre><code class="language-javascript">for (inicialització; condició; increment/decrement) {
+    // instruccions
+}
+</code></pre>
+<ul>
+<li>Inicialització: assignem un valor inicial a la variable comptador.</li>
+<li>Condició: la condició que s'ha de complir per a executar les instruccions del cos del bucle.</li>
+<li>Increment o decrement de la variable comptador:</li>
+</ul>
+<p>Alguns exemples típics:</p>
+<pre><code class="language-javascript">// Imprimir els números del 0 al 9
+for (let i = 0; i &lt; 10; i++) {
+    console.log(i);
+}
+
+// Imprimir els números 10, 8, 6, 4, 2
+for (let i = 10; i &gt; 0; i -= 2) {
+    console.log(i);
+}
+</code></pre>
+<h3 id="continue-i-break">continue i break</h3>
+<p>Existeixen 2 instruccions que trenquen l'execució del bucle:</p>
+<ul>
+<li><strong><code>continue</code></strong>: no executa la resta de la iteració actual i salta al començament de la següent iteració.</li>
+<li><strong><code>break</code></strong>: ix del bucle sense executar la resta d'instruccions de la iteració actual ni la resta d'iteracions.</li>
+</ul>
+<h2 id="arrays">Arrays</h2>
+<p>Els <strong>arrays</strong> són <strong>col·leccions ordenades</strong> de variables o objectes.</p>
+<p>Es pot declarar un array de vàries maneres:</p>
+<pre><code class="language-javascript">let a = new Array(); //Array buit
+let b = []; //Array buit
+let dies = [&quot;Dilluns&quot;, &quot;Dimarts&quot;, &quot;Dimecres&quot;]; // Array amb valors inicials
+let notes = new Array(&quot;Suficient&quot;, &quot;Bé&quot;, &quot;Notable&quot;); // Array amb valors inicials
+</code></pre>
+<p>En el cas de l'arrays dies, podem accedir als seus valor indicant el seu índex, tenint en compte que el primer valor té l'index 0:</p>
+<pre><code class="language-javascript">console.log(dies[0]); // &quot;Dilluns&quot;
+console.log(dies[1]); // &quot;Dimarts&quot;
+console.log(dies[2]); // &quot;Dimecres&quot;
+console.log(dies[3]); // undefined
+</code></pre>
+<p>Com es pot veure, si accedim aun índex sense cap valor obtenim <code>undefined</code>.</p>
+<p>De la mateixa manera podem modificar un valor en concret:</p>
+<pre><code class="language-javascript">dies[0] = &quot;Diumenge&quot;;
+console.log(dies[0]); // &quot;Diumenge&quot;
+</code></pre>
+<p>També podem afegir elements indicant l'index del nou element, inclús si deixem índexs buits sense assignar:</p>
+<pre><code class="language-javascript">dies[3] = &quot;Dijous&quot;;
+dies[5] = &quot;Dissabte&quot;;
+
+console.log(dies[3]); // &quot;Dijous&quot;
+console.log(dies[4]); // undefined
+console.log(dies[5]); // &quot;Dissabte&quot;
+</code></pre>
+<p>Per a evitar tindre en compte quins índexs estan lliures a l'hora d'afegir elements, és millor utilitzar el mètode <strong><code>push()</code></strong>, el qual afegeix el  nou element al final de l'array:</p>
+<pre><code class="language-javascript">dies.push(&quot;Divendres&quot;);
+</code></pre>
+<p>La propietat <strong><code>length</code></strong> retorna el nombre total d'elements de l'array:</p>
+<pre><code class="language-javascript">let dies = [&quot;Dilluns&quot;, &quot;Dimarts&quot;, &quot;Dimecres&quot;]; 
+console.log(dies.length); // 3
+</code></pre>
+<p>El mètode <strong><code>toString()</code></strong> retorna un string amb tots els valors de l'array separats per comes:</p>
+<pre><code class="language-javascript">console.log(dies.toString());
+</code></pre>
+<p>Per últim, recordar que els arrays són objectes:</p>
+<pre><code class="language-javascript">console.log(typeof dies); // object
+</code></pre>
+<h3 id="iterar-un-array">Iterar un array</h3>
+<p>La forma més usual de recòrrer arrays és utilitzant un bucle <strong><code>for</code></strong> utilitzant els índexs:</p>
+<pre><code class="language-javascript">for (let i = 0; i &lt; dies.length; i++) {
+    console.log(dies[i]);
+}
+</code></pre>
+<p>Existeix una forma de bucle, <strong><code>for .. of</code></strong>, per a recòrrer arrays:</p>
+<pre><code class="language-javascript">for (let dia of dies) {
+    console.log(dia);
+}
+</code></pre>
+<p>El mètode <strong><code>array.foreach(func)</code></strong> també es pot emprar per a executar una determinada funció per a cada valor de l'array:</p>
+<pre><code class="language-javascript">dies.foreach(myFunction);
+
+// Imprimeix tots els valor en majúscules
+function myFunction(value) {
+    value = value.toUpperCase();
+    console.log(value);
+}
+</code></pre></div>
             </div>
         </div>
 
@@ -700,5 +823,5 @@ console.log(num) // &quot;Dos&quot;
 
 <!--
 MkDocs version : 1.4.2
-Build Date UTC : 2023-04-21 09:15:09.225011+00:00
+Build Date UTC : 2023-04-26 17:20:20.946886+00:00
 -->
