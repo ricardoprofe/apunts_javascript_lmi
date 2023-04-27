@@ -630,6 +630,97 @@ Existeixen 2 instruccions que trenquen l'execució del bucle:
 - **`continue`**: no executa la resta de la iteració actual i salta al començament de la següent iteració.
 - **`break`**: ix del bucle sense executar la resta d'instruccions de la iteració actual ni la resta d'iteracions.
 
+## Funcions
+
+Les **funcions** són fragments de codi que s'associen a un nom simbòlic i executen una sèrie d'instruccions. Serveixen per a repetir el mateix codi en diferents parts del programa sense necessitat de reescriure'l.
+
+La forma general de declarar una funció és:
+
+```javascript
+function nomFuncio (llista_paràmetres) {
+    // intruccions
+    return valor;
+}
+```
+
+El **nom de la funció** pot contindre els mateixos caràcters que els noms de variables (lletres, dígits, _ i $).
+
+La **llista de paràmetres** pot tindre 0 o més paràmetres. En cas de no tindre paràmetres els parèntesis s'han d'escriure igualment.
+
+La instrucció **`return`** s'utilitza per a retornar un valor, generalment resultat d'operacions sobre els paràmetres d'entrada. La seua execució comporta l'eixida de la funció i el retorn de l'execució al programa principal. No és obligatòria la inclusió de la instrucció `return`. Si la funció arriba al final del seu codi sense trobar un `return`, finalitza la seua execució i retorna al programa principal.
+
+La instrucció `return` també pot utilitzar-se per a eixir d'una funció sense tornar cap valor.
+
+Les funcions es poden cridar des de qualsevol lloc del programa on siguen visibles, escrivint el seu nom i els possibles paràmetres requerits.
+
+El valor de retorn d'una funció pot ser utilitzat en qualsevol expressió del programa, generalment és assignat a una variable.
+
+Alguns exemples de funcions i del seu ús:
+
+```javascript
+//Funció sense paràmetres ni return
+function hola () {
+    window.alert("Hola");
+}
+
+//Funció amb 1 paràmetre
+function holaNom (nom) {
+    window.alert("Hola " + nom);
+}
+
+//Funció amb 2 paràmetres i return
+function suma (num1, num2) {
+    let resultat = num1 + num2;
+    return resultat;
+}
+
+//Formes de cridar a les funcions
+hola();
+hola("Joan");
+let resultat = suma(4,6);
+```
+
+Una qüestió important és l'**àmbit de visibilitat** de les variables. Quan declarem una variable dins d'una funció (en l'exemple anterior `resultat` dins de la funció `suma`), aquesta és **local** i no és visible des de fora de la funció. Tanmateix, la variable `resultat` del cos principal és **global** i és visible des de dins de totes les funcions. En l'exemple anterior, al coincidir el nom de les variables `resultat`, el que tenim són 2 variables diferents, una global i l'altra local, que poden tindre valors diferents.
+
+> Per a evitar problemes amb la visibilitat de les variables, es recomana declarar-les totes amb `let`. Si es declaren amb `var` o sense res, les variables locals poden ser visibles des de fora de les funcions i generar problemes al depurar.
+> 
+> També és una bona pràctica reduir el nombre de variables globals.
+
+Quan una funció té paràmetres per no li passem cap valor, el valor del paràmetre és `undefined`:
+
+```javascript
+function f (a) {
+  console.log(a);
+}
+
+f(); // undefined
+```
+
+Podem assignar **valors per defecte** als paràmetres, els quals s'assignaran quan la funció s'invoca sense passar-li cap valor al paràmetre en concret:
+
+```javascript
+function f (a = "Hola") {
+  console.log(a);
+}
+
+f(); // "Hola"
+```
+
+En JavaScript les funcions són valors i poden ser assignades a variables:
+
+```javascript
+function f (a = "Hola") {
+  console.log(a);
+}
+
+let copia = f;
+
+copia(); // "Hola"
+```
+
+Aquesta característica permet passar funcions com a arguments d'altres funcions. Veurem exemples més endavant.
+
+
 ## Arrays
 
 Els **arrays** són **col·leccions ordenades** de variables o objectes.
@@ -699,7 +790,7 @@ console.log(typeof dies); // object
 
 ### Iterar un array
 
-La forma més usual de recòrrer arrays és utilitzant un bucle **`for`** utilitzant els índexs:
+La forma més usual de recórrer arrays és utilitzant un bucle **`for`** utilitzant els índexs:
 
 ```javascript
 for (let i = 0; i < dies.length; i++) {
@@ -707,7 +798,7 @@ for (let i = 0; i < dies.length; i++) {
 }
 ```
 
-Existeix una forma de bucle, **`for .. of`**, per a recòrrer arrays:
+Existeix una forma de bucle, **`for .. of`**, per a recórrer arrays:
 
 ```javascript
 for (let dia of dies) {
@@ -720,11 +811,14 @@ El mètode **`array.foreach(func)`** també es pot emprar per a executar una det
 ```javascript
 dies.foreach(myFunction);
 
-// Imprimeix tots els valor en majúscules
+// Imprimeix tots els valors en majúscules
 function myFunction(value) {
     value = value.toUpperCase();
     console.log(value);
 }
 ```
+
+## Objectes
+
 
 

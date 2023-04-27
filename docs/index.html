@@ -121,7 +121,15 @@
               <ul class="nav flex-column">
               </ul>
             </li>
+            <li class="nav-item" data-level="2"><a href="#funcions" class="nav-link">Funcions</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
             <li class="nav-item" data-level="2"><a href="#arrays" class="nav-link">Arrays</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#objectes" class="nav-link">Objectes</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -683,6 +691,71 @@ for (let i = 10; i &gt; 0; i -= 2) {
 <li><strong><code>continue</code></strong>: no executa la resta de la iteració actual i salta al començament de la següent iteració.</li>
 <li><strong><code>break</code></strong>: ix del bucle sense executar la resta d'instruccions de la iteració actual ni la resta d'iteracions.</li>
 </ul>
+<h2 id="funcions">Funcions</h2>
+<p>Les <strong>funcions</strong> són fragments de codi que s'associen a un nom simbòlic i executen una sèrie d'instruccions. Serveixen per a repetir el mateix codi en diferents parts del programa sense necessitat de reescriure'l.</p>
+<p>La forma general de declarar una funció és:</p>
+<pre><code class="language-javascript">function nomFuncio (llista_paràmetres) {
+    // intruccions
+    return valor;
+}
+</code></pre>
+<p>El <strong>nom de la funció</strong> pot contindre els mateixos caràcters que els noms de variables (lletres, dígits, _ i $).</p>
+<p>La <strong>llista de paràmetres</strong> pot tindre 0 o més paràmetres. En cas de no tindre paràmetres els parèntesis s'han d'escriure igualment.</p>
+<p>La instrucció <strong><code>return</code></strong> s'utilitza per a retornar un valor, generalment resultat d'operacions sobre els paràmetres d'entrada. La seua execució comporta l'eixida de la funció i el retorn de l'execució al programa principal. No és obligatòria la inclusió de la instrucció <code>return</code>. Si la funció arriba al final del seu codi sense trobar un <code>return</code>, finalitza la seua execució i retorna al programa principal.</p>
+<p>La instrucció <code>return</code> també pot utilitzar-se per a eixir d'una funció sense tornar cap valor.</p>
+<p>Les funcions es poden cridar des de qualsevol lloc del programa on siguen visibles, escrivint el seu nom i els possibles paràmetres requerits.</p>
+<p>El valor de retorn d'una funció pot ser utilitzat en qualsevol expressió del programa, generalment és assignat a una variable.</p>
+<p>Alguns exemples de funcions i del seu ús:</p>
+<pre><code class="language-javascript">//Funció sense paràmetres ni return
+function hola () {
+    window.alert(&quot;Hola&quot;);
+}
+
+//Funció amb 1 paràmetre
+function holaNom (nom) {
+    window.alert(&quot;Hola &quot; + nom);
+}
+
+//Funció amb 2 paràmetres i return
+function suma (num1, num2) {
+    let resultat = num1 + num2;
+    return resultat;
+}
+
+//Formes de cridar a les funcions
+hola();
+hola(&quot;Joan&quot;);
+let resultat = suma(4,6);
+</code></pre>
+<p>Una qüestió important és l'<strong>àmbit de visibilitat</strong> de les variables. Quan declarem una variable dins d'una funció (en l'exemple anterior <code>resultat</code> dins de la funció <code>suma</code>), aquesta és <strong>local</strong> i no és visible des de fora de la funció. Tanmateix, la variable <code>resultat</code> del cos principal és <strong>global</strong> i és visible des de dins de totes les funcions. En l'exemple anterior, al coincidir el nom de les variables <code>resultat</code>, el que tenim són 2 variables diferents, una global i l'altra local, que poden tindre valors diferents.</p>
+<blockquote>
+<p>Per a evitar problemes amb la visibilitat de les variables, es recomana declarar-les totes amb <code>let</code>. Si es declaren amb <code>var</code> o sense res, les variables locals poden ser visibles des de fora de les funcions i generar problemes al depurar.</p>
+<p>També és una bona pràctica reduir el nombre de variables globals.</p>
+</blockquote>
+<p>Quan una funció té paràmetres per no li passem cap valor, el valor del paràmetre és <code>undefined</code>:</p>
+<pre><code class="language-javascript">function f (a) {
+  console.log(a);
+}
+
+f(); // undefined
+</code></pre>
+<p>Podem assignar <strong>valors per defecte</strong> als paràmetres, els quals s'assignaran quan la funció s'invoca sense passar-li cap valor al paràmetre en concret:</p>
+<pre><code class="language-javascript">function f (a = &quot;Hola&quot;) {
+  console.log(a);
+}
+
+f(); // &quot;Hola&quot;
+</code></pre>
+<p>En JavaScript les funcions són valors i poden ser assignades a variables:</p>
+<pre><code class="language-javascript">function f (a = &quot;Hola&quot;) {
+  console.log(a);
+}
+
+let copia = f;
+
+copia(); // &quot;Hola&quot;
+</code></pre>
+<p>Aquesta característica permet passar funcions com a arguments d'altres funcions. Veurem exemples més endavant.</p>
 <h2 id="arrays">Arrays</h2>
 <p>Els <strong>arrays</strong> són <strong>col·leccions ordenades</strong> de variables o objectes.</p>
 <p>Es pot declarar un array de vàries maneres:</p>
@@ -724,12 +797,12 @@ console.log(dies.length); // 3
 <pre><code class="language-javascript">console.log(typeof dies); // object
 </code></pre>
 <h3 id="iterar-un-array">Iterar un array</h3>
-<p>La forma més usual de recòrrer arrays és utilitzant un bucle <strong><code>for</code></strong> utilitzant els índexs:</p>
+<p>La forma més usual de recórrer arrays és utilitzant un bucle <strong><code>for</code></strong> utilitzant els índexs:</p>
 <pre><code class="language-javascript">for (let i = 0; i &lt; dies.length; i++) {
     console.log(dies[i]);
 }
 </code></pre>
-<p>Existeix una forma de bucle, <strong><code>for .. of</code></strong>, per a recòrrer arrays:</p>
+<p>Existeix una forma de bucle, <strong><code>for .. of</code></strong>, per a recórrer arrays:</p>
 <pre><code class="language-javascript">for (let dia of dies) {
     console.log(dia);
 }
@@ -737,12 +810,13 @@ console.log(dies.length); // 3
 <p>El mètode <strong><code>array.foreach(func)</code></strong> també es pot emprar per a executar una determinada funció per a cada valor de l'array:</p>
 <pre><code class="language-javascript">dies.foreach(myFunction);
 
-// Imprimeix tots els valor en majúscules
+// Imprimeix tots els valors en majúscules
 function myFunction(value) {
     value = value.toUpperCase();
     console.log(value);
 }
-</code></pre></div>
+</code></pre>
+<h2 id="objectes">Objectes</h2></div>
             </div>
         </div>
 
@@ -823,5 +897,5 @@ function myFunction(value) {
 
 <!--
 MkDocs version : 1.4.2
-Build Date UTC : 2023-04-26 17:20:20.946886+00:00
+Build Date UTC : 2023-04-27 16:49:07.671388+00:00
 -->
