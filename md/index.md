@@ -820,5 +820,62 @@ function myFunction(value) {
 
 ## Objectes
 
+El **objectes** són variables que poden tindre altres variables, anomenades **propietats**, i funcions, anomenades **mètodes**.
 
+Les **propietats** poden ser de diferents tipus de dades, inclús poden ser altres objectes o arrays de variables o d'objectes.
 
+Per a crear un objectes en JavaScript, al contrari que en altres llenguatges, no es necessari definir primer la classe a partir de la qual s'ha d'instanciar. Es poden declarar directament de vàries maneres:
+
+```javascript
+let alumne = {nom: "Pep", edat: 15};
+```
+
+Les propietats són parelles de **clau** (nom) i **valor** ("Pep") separades per 2 punts (**`:`**).
+
+És freqüent escriure cada propietat en una línia nova per a més claredat:
+
+```javascript
+let alumne = {
+    nom: "Pep", 
+    cognoms: "Peris Llopis",
+    edat: 15,};
+```
+
+Compte amb la última coma després de l'edat. Aquesta sintaxi és correcta i facilita l'adició i supressió de noves propietats en el codi.
+
+També podem crear objectes buits:
+
+```javascript
+let alumne = {}; // Sintaxi d'objecte literal
+let professor = new Object(); // Sintaxi de contrstructor d'objectes
+```
+
+Podem accedir a les propietats amb la notació de punt:
+
+```javascript
+console.log(alumne.nom); // "Pep"
+```
+
+O ambla notació de claudàtors, indicar el nom de la clau entre cometes:
+
+```javascript
+console.log(alumne["edat"]); // 15
+```
+
+Canviar els valor d'un objecte es fa de manera similar:
+
+```javascript
+alumne.nom = "Maria";
+alumne["edat"] = 18;
+```
+
+Una vegada creat un objecte, li podem afegir propietats dinàmicament:
+
+```javascript
+let alumne = {nom: "Pep", edat: 15};
+alumne.poblacio = "València";
+```
+
+## Mètodes
+
+Els mètodes es poden definir
