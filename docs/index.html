@@ -816,7 +816,90 @@ function myFunction(value) {
     console.log(value);
 }
 </code></pre>
-<h2 id="objectes">Objectes</h2></div>
+<h2 id="objectes">Objectes</h2>
+<p>El <strong>objectes</strong> són variables que poden tindre altres variables, anomenades <strong>propietats</strong>, i funcions, anomenades <strong>mètodes</strong>.</p>
+<p>Les <strong>propietats</strong> poden ser de diferents tipus de dades, inclús poden ser altres objectes o arrays de variables o d'objectes.</p>
+<p>Per a crear un objecte en JavaScript, al contrari que en altres llenguatges, no és necessari definir primer la classe a partir de la qual s'ha d'instanciar. Es poden declarar directament:</p>
+<pre><code class="language-javascript">let alumne = {nom: &quot;Pep&quot;, edat: 15};
+</code></pre>
+<p>Les propietats són parelles de <strong>clau</strong> (nom) i <strong>valor</strong> ("Pep") separades per 2 punts (<strong><code>:</code></strong>).</p>
+<p>És freqüent escriure cada propietat en una línia nova per a més claredat:</p>
+<pre><code class="language-javascript">let alumne = {
+    nom: &quot;Pep&quot;, 
+    cognoms: &quot;Peris Llopis&quot;,
+    edat: 15,
+  };
+</code></pre>
+<p>Compte amb la última coma després de l'edat. Aquesta sintaxi és correcta i facilita l'adició i supressió de noves propietats en el codi.</p>
+<p>També podem crear objectes buits:</p>
+<pre><code class="language-javascript">let alumne = {}; // Sintaxi d'objecte literal
+let professor = new Object(); // Sintaxi de contrstructor d'objectes
+</code></pre>
+<p>Podem accedir a les propietats amb la notació de punt:</p>
+<pre><code class="language-javascript">console.log(alumne.nom); // &quot;Pep&quot;
+</code></pre>
+<p>O amb la notació de claudàtors, indicar el nom de la clau entre cometes:</p>
+<pre><code class="language-javascript">console.log(alumne[&quot;edat&quot;]); // 15
+</code></pre>
+<p>Canviar els valor d'un objecte es fa de manera similar:</p>
+<pre><code class="language-javascript">alumne.nom = &quot;Maria&quot;;
+alumne[&quot;edat&quot;] = 18;
+</code></pre>
+<p>Una vegada creat un objecte, li podem afegir propietats dinàmicament:</p>
+<pre><code class="language-javascript">let alumne = {nom: &quot;Pep&quot;, edat: 15};
+alumne.poblacio = &quot;València&quot;;
+</code></pre>
+<p>I també les podem eliminar dinàmicament:</p>
+<pre><code class="language-javascript">delete alumne.cognoms;
+console.log(alumne.cognoms); // undefined
+</code></pre>
+<p>Si accedim a una propietat d'un objecte inexistent, ens tornarà <code>undefined</code>. Podem comprovar si una propietat existeix amb la instrucció <strong><code>in</code></strong>:</p>
+<pre><code class="language-javascript">if (&quot;cognoms&quot; in alumne) {
+    console.log(alumne.cognoms);
+}
+</code></pre>
+<h3 id="metodes">Mètodes</h3>
+<p>Els <strong>mètodes</strong> es poden definir de la mateixa forma que les <em>funcions anònimes</em>: el nom de la funció és la <strong>clau</strong> i la definició és el <strong>valor</strong>:</p>
+<pre><code class="language-javascript">let alumne = {
+    nom: &quot;Pep&quot;, 
+    cognoms: &quot;Peris Llopis&quot;,
+    edat: 15,
+    nomComplet: function() {
+        return this.nom + &quot; &quot; + this.cognoms;
+      },
+    sumarEdat: function(anys) {
+        this.edat += anys;
+      },
+    };
+
+console.log(alumne.nomComplet()); // &quot;Pep Peris Llopis&quot;
+
+alumne.sumarEdat(2); 
+console.log(alumne.edat); // 17
+</code></pre>
+<p>Com es pot veure, els mètodes s'utilitzen amb la notació de punt. També es poden utilitzar la notació de claudàtors:</p>
+<pre><code class="language-javascript">alumne[&quot;sumarEdat&quot;](2); 
+</code></pre>
+<p>La paraula reservada <strong><code>this</code></strong>, quan es troba dins d'un mètode, fa referència al propi objecte. En l'exemple anterior <code>this.nom</code> té el valor "<em>Pep"</em>.</p>
+<p>Al igual que amb les propietats, els mètodes es poden afegir a un objecte una vegada que aquest s'ha creat:</p>
+<pre><code class="language-javascript">alumne.nouMetode = function() {
+    ...
+}
+</code></pre>
+<h3 id="iterant-objectes">Iterant objectes</h3>
+<p>Podem iterar per les propietats d'un objecte usant bucles <strong><code>for ... in</code></strong>:</p>
+<pre><code class="language-javascript">for (let key in alumne) {
+    console.log(key + &quot;: &quot; + alumne[key]);
+}
+</code></pre>
+<p>En aquest exemple la variable <code>key</code> recorre totes les claus de l'objecte <code>alumne</code>, i amb això dins del bucle podem accedir als valors amb <code>alumne[key]</code>.</p>
+<p>El problema del codi anterior és que imprimeix també les funcions. Podem visualitzar només les propietats usant la instrucció <code>typeof</code>:</p>
+<pre><code class="language-javascript">for (let key in alumne) {
+    if (typeof alumne[key] != 'function') {
+        console.log(key + &quot;: &quot; + alumne[key]);
+    }
+}
+</code></pre></div>
             </div>
         </div>
 
@@ -897,5 +980,5 @@ function myFunction(value) {
 
 <!--
 MkDocs version : 1.4.2
-Build Date UTC : 2023-04-27 16:49:07.671388+00:00
+Build Date UTC : 2023-05-03 15:31:41.285193+00:00
 -->

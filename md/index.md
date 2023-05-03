@@ -824,7 +824,7 @@ El **objectes** són variables que poden tindre altres variables, anomenades **p
 
 Les **propietats** poden ser de diferents tipus de dades, inclús poden ser altres objectes o arrays de variables o d'objectes.
 
-Per a crear un objectes en JavaScript, al contrari que en altres llenguatges, no es necessari definir primer la classe a partir de la qual s'ha d'instanciar. Es poden declarar directament de vàries maneres:
+Per a crear un objecte en JavaScript, al contrari que en altres llenguatges, no és necessari definir primer la classe a partir de la qual s'ha d'instanciar. Es poden declarar directament:
 
 ```javascript
 let alumne = {nom: "Pep", edat: 15};
@@ -838,7 +838,8 @@ Les propietats són parelles de **clau** (nom) i **valor** ("Pep") separades per
 let alumne = {
     nom: "Pep", 
     cognoms: "Peris Llopis",
-    edat: 15,};
+    edat: 15,
+  };
 ```
 
 Compte amb la última coma després de l'edat. Aquesta sintaxi és correcta i facilita l'adició i supressió de noves propietats en el codi.
@@ -856,7 +857,7 @@ Podem accedir a les propietats amb la notació de punt:
 console.log(alumne.nom); // "Pep"
 ```
 
-O ambla notació de claudàtors, indicar el nom de la clau entre cometes:
+O amb la notació de claudàtors, indicar el nom de la clau entre cometes:
 
 ```javascript
 console.log(alumne["edat"]); // 15
@@ -876,6 +877,78 @@ let alumne = {nom: "Pep", edat: 15};
 alumne.poblacio = "València";
 ```
 
-## Mètodes
+I també les podem eliminar dinàmicament:
 
-Els mètodes es poden definir
+```javascript
+delete alumne.cognoms;
+console.log(alumne.cognoms); // undefined
+```
+
+Si accedim a una propietat d'un objecte inexistent, ens tornarà `undefined`. Podem comprovar si una propietat existeix amb la instrucció **`in`**:
+
+```javascript
+if ("cognoms" in alumne) {
+    console.log(alumne.cognoms);
+}
+```
+
+### Mètodes
+
+Els **mètodes** es poden definir de la mateixa forma que les *funcions anònimes*: el nom de la funció és la **clau** i la definició és el **valor**:
+
+```javascript
+let alumne = {
+    nom: "Pep", 
+    cognoms: "Peris Llopis",
+    edat: 15,
+    nomComplet: function() {
+        return this.nom + " " + this.cognoms;
+      },
+    sumarEdat: function(anys) {
+        this.edat += anys;
+      },
+    };
+
+console.log(alumne.nomComplet()); // "Pep Peris Llopis"
+
+alumne.sumarEdat(2); 
+console.log(alumne.edat); // 17
+```
+
+Com es pot veure, els mètodes s'utilitzen amb la notació de punt. També es poden utilitzar la notació de claudàtors:
+
+```javascript
+alumne["sumarEdat"](2); 
+```
+
+La paraula reservada **`this`**, quan es troba dins d'un mètode, fa referència al propi objecte. En l'exemple anterior `this.nom` té el valor "*Pep"*.
+
+Al igual que amb les propietats, els mètodes es poden afegir a un objecte una vegada que aquest s'ha creat:
+
+```javascript
+alumne.nouMetode = function() {
+    ...
+}
+```
+
+### Iterant objectes
+
+Podem iterar per les propietats d'un objecte usant bucles **`for ... in`**:
+
+```javascript
+for (let key in alumne) {
+    console.log(key + ": " + alumne[key]);
+}
+```
+
+En aquest exemple la variable `key` recorre totes les claus de l'objecte `alumne`, i amb això dins del bucle podem accedir als valors amb `alumne[key]`.
+
+El problema del codi anterior és que imprimeix també les funcions. Podem visualitzar només les propietats usant la instrucció `typeof`:
+
+```javascript
+for (let key in alumne) {
+    if (typeof alumne[key] != 'function') {
+        console.log(key + ": " + alumne[key]);
+    }
+}
+```
